@@ -5,55 +5,50 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vCard - Personal Portfolio</title>
+  <title>Satyam Pandey – Quantitative Analyst & Data Scientist</title>
 
-  <!--
-    - favicon
-  -->
-  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+  <!-- favicon -->
+  <link rel="shortcut icon" href="./assets/images/logo.png" type="image/x-icon">
 
-  <!--
-    - custom css link
-  -->
+  <!-- custom css link -->
   <link rel="stylesheet" href="./assets/css/style.css">
 
-  <!--
-    - google font link
-  -->
+  <!-- google font link -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
 
-  <!--
-    - #MAIN
-  -->
-
+  <!-- MAIN -->
   <main>
 
-    <!--
-      - #SIDEBAR
-    -->
-
+    <!-- SIDEBAR -->
     <aside class="sidebar" data-sidebar>
 
       <div class="sidebar-info">
 
-        <figure class="avatar-box">
-          <img src="./assets/images/my-avatar.png" alt="Richard hanrick" width="80">
+        <figure class="avatar-box reveal-on-scroll">
+          <!-- replace this image with your own avatar -->
+          <img src="./assets/images/avatar.png" alt="Satyam Pandey" width="60">
         </figure>
 
-        <div class="info-content">
-          <h1 class="name" title="Richard hanrick">Richard hanrick</h1>
+        <div class="info-content reveal-on-scroll">
+          <h1 class="name" title="Satyam Pandey">Satyam Pandey</h1>
 
-          <p class="title">Web developer</p>
+          <p
+            class="title"
+            id="role-title"
+            data-roles='["Senior Quantitative Analyst","Data Scientist","ML Engineer","Software Developer","Software Architect"]'>
+            Senior Quantitative Analyst
+          </p>
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
           <span>Show Contacts</span>
-
           <ion-icon name="chevron-down"></ion-icon>
         </button>
 
@@ -63,85 +58,46 @@
 
         <div class="separator"></div>
 
-        <ul class="contacts-list">
+        <ul class="contacts-list reveal-on-scroll">
 
+          <!-- Email -->
           <li class="contact-item">
-
             <div class="icon-box">
               <ion-icon name="mail-outline"></ion-icon>
             </div>
 
             <div class="contact-info">
               <p class="contact-title">Email</p>
-
-              <a href="mailto:richard@example.com" class="contact-link">richard@example.com</a>
+              <a href="mailto:7satyampandey@gmail.com"
+                 class="contact-link"
+                 style="font-weight: 600; font-size: 0.6rem;">
+                7satyampandey@gmail.com
+              </a>
             </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Phone</p>
-
-              <a href="tel:+12133522795" class="contact-link">+1 (213) 352-2795</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-
-              <time datetime="1982-06-23">June 23, 1982</time>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Location</p>
-
-              <address>Sacramento, California, USA</address>
-            </div>
-
           </li>
 
         </ul>
 
         <div class="separator"></div>
 
-        <ul class="social-list">
+        <!-- Social links -->
+        <ul class="social-list reveal-on-scroll">
 
           <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
+            <a href="https://www.linkedin.com/in/pandeysatyam" target="_blank" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
             </a>
           </li>
 
           <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
+            <a href="https://github.com/satyamamarpandey" target="_blank" class="social-link">
+              <ion-icon name="logo-github"></ion-icon>
             </a>
           </li>
 
           <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
+            <a href="mailto:7satyampandey@gmail.com" class="social-link">
+              <ion-icon name="mail-outline"></ion-icon>
             </a>
           </li>
 
@@ -153,249 +109,291 @@
 
 
 
-
-
-    <!--
-      - #main-content
-    -->
-
+    <!-- MAIN CONTENT -->
     <div class="main-content">
 
-      <!--
-        - #NAVBAR
-      -->
-
+      <!-- NAVBAR -->
       <nav class="navbar">
-
         <ul class="navbar-list">
-
           <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>About</button>
+            <button class="navbar-link active" data-nav-link>About</button>
           </li>
-
           <li class="navbar-item">
             <button class="navbar-link" data-nav-link>Resume</button>
           </li>
-
           <li class="navbar-item">
             <button class="navbar-link" data-nav-link>Portfolio</button>
           </li>
-
           <li class="navbar-item">
             <button class="navbar-link" data-nav-link>Blog</button>
           </li>
-
           <li class="navbar-item">
             <button class="navbar-link" data-nav-link>Contact</button>
           </li>
-
         </ul>
-
       </nav>
 
 
 
-
-
-      <!--
-        - #ABOUT
-      -->
-
-      <article class="about  active" data-page="about">
+      <!-- ABOUT -->
+      <article class="about active" data-page="about">
 
         <header>
           <h2 class="h2 article-title">About me</h2>
         </header>
 
-        <section class="about-text">
-          <p>
-            I'm Creative Director and UI/UX Designer from Sydney, Australia, working in web development and print media.
-            I enjoy
-            turning complex problems into simple, beautiful and intuitive designs.
-          </p>
-
-          <p>
-            My job is to build your website so that it is functional and user-friendly but at the same time attractive.
-            Moreover, I
-            add personal touch to your product and make sure that is eye-catching and easy to use. My aim is to bring
-            across your
-            message and identity in the most creative way. I created web design for many famous brand companies.
-          </p>
+        <section class="about-text reveal-on-scroll">
+          <p> I’m a results-driven quantitative engineer with a strong foundation in data science, machine learning, and statistical modeling. I build analytical systems that transform complex operational and customer datasets into clear, actionable insights that drive real business decisions. </p> <p> At Exelon, I’ve developed AI-powered affordability models, customer behavior frameworks, and large-scale data pipelines supporting regulatory, risk, and operational analytics. I also contributed to predictive modeling and quantitative research initiatives with the National Science Foundation, strengthening my background in applied statistics and experimentation. </p> <p> With hands-on experience in Python, R, SQL, and cloud platforms (AWS, Azure, GCP), I design models that are accurate, explainable, and production-ready: enabling forecasting, risk assessment, segmentation, and decision optimization. I place strong emphasis on model governance, data quality, and reproducibility. </p> <p> Having worked across energy, FinTech, ESG, and pharma, I bring a broad understanding of how data moves through organizations and how quantitative models influence strategy. I enjoy end-to-end problem solving from experimental design and feature engineering to deployment, visualization, and executive-level communication and I’m especially focused on building reusable frameworks and scalable analytics foundations. </p>
         </section>
 
+        <!-- What I'm doing -->
+        <section class="service reveal-on-scroll">
+          <h3 class="h3 service-title">What I'm doing</h3>
 
-        <!--
-          - service
-        -->
+          <ul class="service-list">
 
-        <section class="service">
+            <!-- existing + extended items -->
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/QM.png" alt="Quantitative modeling" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Quantitative Modeling</h4>
+                <p class="service-item-text">
+                  Building predictive and scenario-based models for affordability, risk, and
+                  strategic planning using statistical and ML techniques.
+                </p>
+              </div>
+            </li>
 
-          <h3 class="h3 service-title">What i'm doing</h3>
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/DEA.png" alt="Data engineering" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Data Engineering & Analytics</h4>
+                <p class="service-item-text">
+                  Designing robust data pipelines, feature stores, and analytics layers that
+                  power dashboards, reporting, and experiments.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/MLAI.png" alt="Machine learning" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Machine Learning & AI</h4>
+                <p class="service-item-text">
+                  Applying ML and deep learning to energy, pharma, finance, and real estate
+                  problems, with an emphasis on explainability and trust.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/CC.png" alt="Cloud & security" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Cloud & Cybersecurity</h4>
+                <p class="service-item-text">
+                  Deploying workloads on AWS, Azure, and GCP with secure-by-design principles,
+                  monitoring, and cost optimization.
+                </p>
+              </div>
+            </li>
+
+            <!-- 4 extra items -->
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/ESA.png" alt="Energy analytics" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Energy & Sustainability Analytics</h4>
+                <p class="service-item-text">
+                  Using data and modeling to understand customer affordability, design support
+                  programs, and enable equitable energy transitions.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/FER.png" alt="Finance & ESG" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Financial & ESG Research</h4>
+                <p class="service-item-text">
+                  Exploring ESG signals, market structures, and alternative datasets to study
+                  sustainable business practices and investment decisions.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/MCD.png" alt="Mentoring & teaching" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Mentoring & Career Development</h4>
+                <p class="service-item-text">
+                  Supporting students and professionals with resume reviews, interview prep,
+                  and practical guidance on breaking into data and quant roles.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/OCP.png" alt="Community projects" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Open-source & Community Projects</h4>
+                <p class="service-item-text">
+                  Running collaborative initiatives like Mail-Stream and Path Finder AI that
+                  bring people together to build real tools and learn by doing.
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </section>
+
+        <!-- Products / Initiatives -->
+        <section class="service reveal-on-scroll">
+          <h3 class="h3 service-title">Products & Initiatives</h3>
 
           <ul class="service-list">
 
             <li class="service-item">
-
               <div class="service-icon-box">
-                <img src="./assets/images/icon-design.svg
-                " alt="design icon" width="40">
+                <img src="./assets/images/MS.png" alt="Mail-Stream" width="40">
               </div>
-
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Web design</h4>
-
+                <h4 class="h4 service-item-title">Mail-Stream</h4>
                 <p class="service-item-text">
-                  The most modern and high-quality design made at a professional level.
+                  “Mail-Stream: Building Bridges with Code” is a collaborative program to build a
+                  free Mass Emailer for communities, creators, and teams. We combine engineering,
+                  content strategy, and outreach to create a powerful mass-emailing tool.
+                  <br>
+                  <a href="https://mail-stream-b05f3ae2a613.herokuapp.com/" target="_blank" class="contact-link">
+                    Visit: MailStream.com
+                  </a>
                 </p>
               </div>
-
             </li>
 
             <li class="service-item">
-
               <div class="service-icon-box">
-                <img src="./assets/images/icon-dev.svg" alt="Web development icon" width="40">
+                <img src="./assets/images/PFAI.png" alt="Path Finder AI" width="40">
               </div>
-
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Web development</h4>
-
+                <h4 class="h4 service-item-title">Path Finder AI</h4>
                 <p class="service-item-text">
-                  High-quality development of sites at the professional level.
+                  “Path Finder AI: Navigating Careers with Innovation” is an AI-driven Resume Analyzer initiative. 
+                  We help professionals optimize their resumes and career trajectories using NLP 
+                  and ML-driven insights for smarter, faster growth.
+                  <br>
+                  <a href="https://pathfinderai-1e061905d74e.herokuapp.com/signin" target="_blank" class="contact-link">
+                    Visit: PathFinder.com
+                  </a>
                 </p>
               </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-app.svg" alt="mobile app icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Mobile apps</h4>
-
-                <p class="service-item-text">
-                  Professional development of applications for iOS and Android.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-photo.svg" alt="camera icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Photography</h4>
-
-                <p class="service-item-text">
-                  I make high-quality photos of any category at a professional level.
-                </p>
-              </div>
-
             </li>
 
           </ul>
-
         </section>
 
-
-        <!--
-          - testimonials
-        -->
-
-        <section class="testimonials">
-
+        <!-- Testimonials -->
+        <section class="testimonials reveal-on-scroll">
           <h3 class="h3 testimonials-title">Testimonials</h3>
 
           <ul class="testimonials-list has-scrollbar">
 
+            <!-- 1: Energy leader -->
             <li class="testimonials-item">
               <div class="content-card" data-testimonials-item>
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="60" data-testimonials-avatar>
+                  <img src="./assets/images/avatar-1.png" alt="Energy & Utilities Leader" width="60"
+                    data-testimonials-avatar>
                 </figure>
 
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Daniel lewis</h4>
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Energy & Utilities Leader</h4>
 
                 <div class="testimonials-text" data-testimonials-text>
                   <p>
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
+                    “Satyam has a rare ability to connect complex quantitative models with
+                    real-world business outcomes. His work on affordability analytics and
+                    scenario modeling has materially improved how we plan and prioritize.”
                   </p>
                 </div>
 
               </div>
             </li>
 
+            <!-- 2: Research supervisor -->
             <li class="testimonials-item">
               <div class="content-card" data-testimonials-item>
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-2.png" alt="Jessica miller" width="60" data-testimonials-avatar>
+                  <img src="./assets/images/avatar-2.png" alt="Research Supervisor" width="60"
+                    data-testimonials-avatar>
                 </figure>
 
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Jessica miller</h4>
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Research Supervisor</h4>
 
                 <div class="testimonials-text" data-testimonials-text>
                   <p>
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
+                    “In our pharmaceutical engineering group, Satyam consistently took ownership
+                    of end-to-end pipelines — data, modeling, and interpretation. His curiosity,
+                    rigor, and documentation set a high bar for the rest of the lab.”
                   </p>
                 </div>
 
               </div>
             </li>
 
+            <!-- 3: FinTech collaborator -->
             <li class="testimonials-item">
               <div class="content-card" data-testimonials-item>
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-3.png" alt="Emily evans" width="60" data-testimonials-avatar>
+                  <img src="./assets/images/avatar-3.png" alt="FinTech Collaborator" width="60"
+                    data-testimonials-avatar>
                 </figure>
 
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Emily evans</h4>
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>FinTech Collaborator</h4>
 
                 <div class="testimonials-text" data-testimonials-text>
                   <p>
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
+                    “Working with Satyam on alternative lending data was like working with a
+                    full team. He handled messy data, built robust models, and communicated
+                    trade-offs clearly to both technical and non-technical stakeholders.”
                   </p>
                 </div>
 
               </div>
             </li>
 
+            <!-- 4: Student mentee -->
             <li class="testimonials-item">
               <div class="content-card" data-testimonials-item>
 
                 <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-4.png" alt="Henry william" width="60" data-testimonials-avatar>
+                  <img src="./assets/images/avatar-4.png" alt="Student Mentee" width="60"
+                    data-testimonials-avatar>
                 </figure>
 
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Henry william</h4>
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Student Mentee</h4>
 
                 <div class="testimonials-text" data-testimonials-text>
                   <p>
-                    Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                    lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                    consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
+                    “Satyam’s mentorship helped me move from being overwhelmed by data roles to
+                    having a clear roadmap. His feedback on projects and resumes is both honest
+                    and extremely actionable.”
                   </p>
                 </div>
 
@@ -403,14 +401,9 @@
             </li>
 
           </ul>
-
         </section>
 
-
-        <!--
-          - testimonials modal
-        -->
-
+        <!-- Testimonials modal -->
         <div class="modal-container" data-modal-container>
 
           <div class="overlay" data-overlay></div>
@@ -423,7 +416,7 @@
 
             <div class="modal-img-wrapper">
               <figure class="modal-avatar-box">
-                <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
+                <img src="./assets/images/avatar-1.png" alt="Leader testimonial" width="80" data-modal-img>
               </figure>
 
               <img src="./assets/images/icon-quote.svg" alt="quote icon">
@@ -431,17 +424,15 @@
 
             <div class="modal-content">
 
-              <h4 class="h3 modal-title" data-modal-title>Daniel lewis</h4>
+              <h4 class="h3 modal-title" data-modal-title>Energy & Utilities Leader</h4>
 
-              <time datetime="2021-06-14">14 June, 2021</time>
+              <time datetime="2025-01-01">2025</time>
 
               <div data-modal-text>
                 <p>
-                  Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                  lot of experience
-                  and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                  consectetur adipiscing
-                  elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
+                  “Satyam has a rare ability to connect complex quantitative models with
+                  real-world business outcomes. His work on affordability analytics and
+                  scenario modeling has materially improved how we plan and prioritize.”
                 </p>
               </div>
 
@@ -451,244 +442,359 @@
 
         </div>
 
-
-        <!--
-          - clients
-        -->
-
-        <section class="clients">
-
-          <h3 class="h3 clients-title">Clients</h3>
+        <!-- Clients -->
+        <section class="clients reveal-on-scroll">
+          <h3 class="h3 clients-title">Organizations I've Worked With</h3>
 
           <ul class="clients-list has-scrollbar">
 
             <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-1-color.png" alt="client logo">
-              </a>
+              <img src="./assets/images/org1.png" alt="Exelon" class="client-logo">
             </li>
 
             <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-2-color.png" alt="client logo">
-              </a>
+              <img src="./assets/images/org2.png" alt="PECO" class="client-logo">
             </li>
 
             <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-3-color.png" alt="client logo">
-              </a>
+              <img src="./assets/images/org3.png" alt="National Science Foundation" class="client-logo">
             </li>
 
             <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-4-color.png" alt="client logo">
-              </a>
+              <img src="./assets/images/org4.png" alt="New Jersey Institute of Technology" class="client-logo">
             </li>
 
             <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-5-color.png" alt="client logo">
-              </a>
+              <img src="./assets/images/org5.png" alt="ZS Associates" class="client-logo">
             </li>
 
             <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-6-color.png" alt="client logo">
-              </a>
+              <img src="./assets/images/org6.png" alt="The Tech Inc." class="client-logo">
             </li>
 
           </ul>
-
         </section>
 
       </article>
 
 
 
-
-
-      <!--
-        - #RESUME
-      -->
-
+      <!-- RESUME -->
       <article class="resume" data-page="resume">
 
         <header>
           <h2 class="h2 article-title">Resume</h2>
+
+          <!-- Centered Download Resume button -->
+          <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
+            <a href="https://www.google.com" target="_blank"
+               class="form-btn"
+               style="display: inline-flex; align-items: center; gap: 0.5rem;">
+              <ion-icon name="download-outline"></ion-icon>
+              <span>Download Resume</span>
+            </a>
+          </div>
         </header>
 
-        <section class="timeline">
+        <!-- Education -->
+        <section class="timeline reveal-on-scroll">
 
           <div class="title-wrapper">
             <div class="icon-box">
               <ion-icon name="book-outline"></ion-icon>
             </div>
-
             <h3 class="h3">Education</h3>
           </div>
 
           <ol class="timeline-list">
 
             <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">University school of the arts</h4>
-
-              <span>2007 — 2008</span>
-
+              <h4 class="h4 timeline-item-title">
+                New Jersey Institute of Technology – M.S. Computer Science
+              </h4>
+              <span>2022 — 2024</span>
               <p class="timeline-text">
-                Nemo enims ipsam voluptatem, blanditiis praesentium voluptum delenit atque corrupti, quos dolores et
-                quas molestias
-                exceptur.
+                Specialized in Data Science, Finance, Cybersecurity, and Cloud engineering.
+                GPA: 3.90 / 4.00. Worked on multiple research projects across FinTech, ESG,
+                cyberpsychology, and pharmaceutical engineering while mentoring students and
+                supporting the university’s data initiatives.
               </p>
-
             </li>
 
             <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">New york academy of art</h4>
-
-              <span>2006 — 2007</span>
-
+              <h4 class="h4 timeline-item-title">
+                Shri Ramdeobaba College of Engineering and Management – B.E. Information Technology
+              </h4>
+              <span>2015 — 2019</span>
               <p class="timeline-text">
-                Ratione voluptatem sequi nesciunt, facere quisquams facere menda ossimus, omnis voluptas assumenda est
-                omnis..
+                Built a strong foundation in algorithms, systems, and software engineering.
+                Participated in technical clubs and projects that sparked interest in applied
+                data science and security.
               </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">High school of art and design</h4>
-
-              <span>2002 — 2004</span>
-
-              <p class="timeline-text">
-                Duis aute irure dolor in reprehenderit in voluptate, quila voluptas mag odit aut fugit, sed consequuntur
-                magni dolores
-                eos.
-              </p>
-
             </li>
 
           </ol>
-
         </section>
 
-        <section class="timeline">
+        <!-- Experience -->
+        <section class="timeline reveal-on-scroll">
 
           <div class="title-wrapper">
             <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
+              <ion-icon name="briefcase-outline"></ion-icon>
             </div>
-
             <h3 class="h3">Experience</h3>
           </div>
 
           <ol class="timeline-list">
 
             <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Creative director</h4>
-
-              <span>2015 — Present</span>
-
+              <h4 class="h4 timeline-item-title">Senior Quantitative Analyst – Exelon</h4>
+              <span>Jun 2024 — Present</span>
               <p class="timeline-text">
-                Nemo enim ipsam voluptatem blanditiis praesentium voluptum delenit atque corrupti, quos dolores et qvuas
-                molestias
-                exceptur.
+                Lead quantitative workstreams for Low-Income Energy Affordability Data across
+                Exelon’s utilities. Designed and implemented predictive models that improve the
+                targeting of assistance programs and estimate customer energy burden under
+                various economic and policy scenarios. Developed frameworks to evaluate the
+                long-term impact of AI and automation on customer operations. Partnered closely
+                with the Home Energy Affordability Team, regulatory, and strategy stakeholders
+                to translate complex model outputs into clear recommendations and playbooks for
+                decision-making.
               </p>
-
             </li>
 
             <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Art director</h4>
-
-              <span>2013 — 2015</span>
-
+              <h4 class="h4 timeline-item-title">Developer Co-Op – PECO</h4>
+              <span>Jan 2024 — May 2024</span>
               <p class="timeline-text">
-                Nemo enims ipsam voluptatem, blanditiis praesentium voluptum delenit atque corrupti, quos dolores et
-                quas molestias
-                exceptur.
+                Implemented a Round Robin Peer Review System that increased review throughput
+                by roughly 25% and reduced bottlenecks in project workflows. Built Gantt-based
+                visualizations to track large contract portfolios, which improved stakeholder
+                comprehension and alignment by about 5%. Designed a Power App integrated with
+                the P6 database and AI services to surface predictive insights on schedule risk,
+                helping project managers anticipate delays earlier in the lifecycle.
               </p>
-
             </li>
 
             <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Web designer</h4>
-
-              <span>2010 — 2013</span>
-
+              <h4 class="h4 timeline-item-title">
+                Data Scientist & ML Engineer – National Science Foundation (CIMSEPP)
+              </h4>
+              <span>Sep 2022 — Jan 2024</span>
               <p class="timeline-text">
-                Nemo enims ipsam voluptatem, blanditiis praesentium voluptum delenit atque corrupti, quos dolores et
-                quas molestias
-                exceptur.
+                Led pharmaceutical engineering research at CIMSEPP, developing ML and deep
+                learning models to predict critical drug compound ratios and formulation
+                properties. Experimented with regression ensembles, neural networks, and feature
+                engineering pipelines to capture complex interactions between API and excipients.
+                Collaborated with domain experts to validate results, publish findings, and
+                build reproducible modeling frameworks that accelerated future experiments.
               </p>
+            </li>
 
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">
+                Research Assistant – NJIT (Cyberpsychology, BioTech, FinTech & ESG)
+              </h4>
+              <span>Sep 2022 — Dec 2024</span>
+              <p class="timeline-text">
+                Supported multiple labs simultaneously, building web-scraping pipelines,
+                analytical datasets, and visual storytelling layers. Reduced response times for
+                several projects by up to 25% through automation and better data engineering.
+                Conducted sentiment analysis, topic modeling, and word cloud generation for
+                large-scale text corpora using Python and NLTK. In BioTech, worked on Parflow
+                watershed modeling and PDE-driven simulations, producing over 40 visualizations
+                for faculty and stakeholders. In FinTech and ESG, integrated data from 10+ P2P
+                lending and crowdfunding platforms and helped shape research questions around
+                sustainable finance.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Cloud Application Engineer & Developer – ZS Associates</h4>
+              <span>Sep 2019 — Jul 2022</span>
+              <p class="timeline-text">
+                Led end-to-end data visualization projects using Tableau and Power BI for
+                global clients, improving data accuracy and adoption by ~25%. Automated data
+                refresh and transformation workflows using Shell scripting, PowerShell, and
+                AWS services, cutting manual effort by ~15–20%. Optimized SQL queries and
+                dashboard designs, achieving up to 25% better performance. Analyzed AWS
+                infrastructure usage to recommend Savings Plans and Reserved Instances that
+                contributed to a ~15% revenue uplift. Managed Windows and Linux servers on AWS
+                and earned a “Best Employee” award for driving reliable, data-backed reporting.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">
+                Software Engineer & Cyber Security Analyst – The Tech Inc.
+              </h4>
+              <span>May 2018 — Aug 2019</span>
+              <p class="timeline-text">
+                Coordinated full website overhauls for a travel platform, delivering a 30%
+                improvement in load speed and a similar uplift in bookings through better UX,
+                SEO, and caching strategies. Translated complex client requirements into clean
+                application designs that reduced development time by ~10% and error rates by
+                ~15%. Hardened infrastructure through firewall tuning, penetration testing, and
+                incident-response playbooks, significantly improving the organization’s security
+                posture and readiness.
+              </p>
             </li>
 
           </ol>
 
         </section>
 
-        <section class="skill">
+        <!-- Skills -->
+        <section class="skill reveal-on-scroll">
 
           <h3 class="h3 skills-title">My skills</h3>
 
           <ul class="skills-list content-card">
 
+            <!-- Core Quant & Modeling -->
             <li class="skills-item">
-
               <div class="title-wrapper">
-                <h5 class="h5">Web design</h5>
-                <data value="80">80%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 80%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Graphic design</h5>
-                <data value="70">70%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 70%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Branding</h5>
+                <div>
+                  <h5 class="h5">Quantitative Modeling & Statistics</h5>
+                  <p class="skill-subtext">Regression, optimization, hypothesis testing</p>
+                </div>
                 <data value="90">90%</data>
               </div>
-
               <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 90%;"></div>
+                <div class="skill-progress-fill" data-skill-value="90"></div>
               </div>
-
             </li>
 
             <li class="skills-item">
-
               <div class="title-wrapper">
-                <h5 class="h5">WordPress</h5>
-                <data value="50">50%</data>
+                <div>
+                  <h5 class="h5">Data Science & Machine Learning</h5>
+                  <p class="skill-subtext">Supervised, unsupervised, model evaluation</p>
+                </div>
+                <data value="90">90%</data>
               </div>
-
               <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 50%;"></div>
+                <div class="skill-progress-fill" data-skill-value="90"></div>
               </div>
+            </li>
 
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <div>
+                  <h5 class="h5">Time Series & Forecasting</h5>
+                  <p class="skill-subtext">Demand, load, financial & KPI forecasts</p>
+                </div>
+                <data value="85">85%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" data-skill-value="85"></div>
+              </div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <div>
+                  <h5 class="h5">NLP & Text Analytics</h5>
+                  <p class="skill-subtext">Topic models, embeddings, sentiment, intent</p>
+                </div>
+                <data value="82">82%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" data-skill-value="82"></div>
+              </div>
+            </li>
+
+            <!-- Data Engineering & Cloud -->
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <div>
+                  <h5 class="h5">Data Engineering & Cloud</h5>
+                  <p class="skill-subtext">Pipelines on AWS / Azure / GCP</p>
+                </div>
+                <data value="85">85%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" data-skill-value="85"></div>
+              </div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <div>
+                  <h5 class="h5">SQL, Data Modeling & ETL</h5>
+                  <p class="skill-subtext">Star schemas, views, performance tuning</p>
+                </div>
+                <data value="88">88%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" data-skill-value="88"></div>
+              </div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <div>
+                  <h5 class="h5">Python, R & Scientific Computing</h5>
+                  <p class="skill-subtext">NumPy, pandas, SciPy, statsmodels</p>
+                </div>
+                <data value="90">90%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" data-skill-value="90"></div>
+              </div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <div>
+                  <h5 class="h5">Full-Stack & Automation</h5>
+                  <p class="skill-subtext">Python services, React UIs, workflow automation</p>
+                </div>
+                <data value="80">80%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" data-skill-value="80"></div>
+              </div>
+            </li>
+
+            <!-- Visualization, Risk & Leadership -->
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <div>
+                  <h5 class="h5">Data Visualization (Tableau / Power BI)</h5>
+                  <p class="skill-subtext">Executive dashboards, story-driven analytics</p>
+                </div>
+                <data value="88">88%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" data-skill-value="88"></div>
+              </div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <div>
+                  <h5 class="h5">Risk, Controls & Cyber Awareness</h5>
+                  <p class="skill-subtext">Model risk, data governance, secure design</p>
+                </div>
+                <data value="78">78%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" data-skill-value="78"></div>
+              </div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <div>
+                  <h5 class="h5">Leadership, Mentoring & Communication</h5>
+                  <p class="skill-subtext">Stakeholder alignment, storytelling, coaching</p>
+                </div>
+                <data value="85">85%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" data-skill-value="85"></div>
+              </div>
             </li>
 
           </ul>
@@ -699,20 +805,16 @@
 
 
 
-
-
-      <!--
-        - #PORTFOLIO
-      -->
-
+      <!-- PORTFOLIO -->
       <article class="portfolio" data-page="portfolio">
 
         <header>
-          <h2 class="h2 article-title">Portfolio</h2>
+          <h2 class="h2 article-title">Project Portfolio</h2>
         </header>
 
-        <section class="projects">
+        <section class="projects reveal-on-scroll">
 
+          <!-- Filter buttons -->
           <ul class="filter-list">
 
             <li class="filter-item">
@@ -720,262 +822,286 @@
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Web design</button>
+              <button data-filter-btn>Quant / Finance</button>
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Applications</button>
+              <button data-filter-btn>Data Science</button>
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Web development</button>
+              <button data-filter-btn>Software</button>
             </li>
 
           </ul>
 
+          <!-- Filter dropdown -->
           <div class="filter-select-box">
 
             <button class="filter-select" data-select>
-
               <div class="select-value" data-selecct-value>Select category</div>
-
               <div class="select-icon">
                 <ion-icon name="chevron-down"></ion-icon>
               </div>
-
             </button>
 
             <ul class="select-list">
-
               <li class="select-item">
                 <button data-select-item>All</button>
               </li>
-
               <li class="select-item">
-                <button data-select-item>Web design</button>
+                <button data-select-item>Quant / Finance</button>
               </li>
-
               <li class="select-item">
-                <button data-select-item>Applications</button>
+                <button data-select-item>Data Science</button>
               </li>
-
               <li class="select-item">
-                <button data-select-item>Web development</button>
+                <button data-select-item>Software</button>
               </li>
-
             </ul>
 
           </div>
 
+          <!-- Projects -->
           <ul class="project-list">
 
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
+            <li class="project-item active" data-filter-item data-category="data science">
+              <a href="https://github.com/satyamamarpandey/General/blob/main/Social%20Media%20Analysis%20and%20Cyberpsychology%20Report.pdf" target="_blank" rel="noopener noreferrer">
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-
-                  <img src="./assets/images/project-1.jpg" alt="finance" loading="lazy">
+                  <img src="./assets/images/WebScraping&DA.png" alt="Web Scraping & Data Analysis" loading="lazy">
                 </figure>
-
-                <h3 class="project-title">Finance</h3>
-
-                <p class="project-category">Web development</p>
-
+                <h3 class="project-title">Web Scraping & Data Analysis</h3>
+                <p class="project-category">Data Science · Report & Code</p>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
+            <li class="project-item active" data-filter-item data-category="software">
+              <a href="https://colab.research.google.com/drive/1IQ24QgGum-vi9fRXDFUWBZU-OUIGn3pS" target="_blank" rel="noopener noreferrer">
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-
-                  <img src="./assets/images/project-2.png" alt="orizon" loading="lazy">
+                  <img src="./assets/images/WeatherApp.png" alt="Weather Application using Python" loading="lazy">
                 </figure>
-
-                <h3 class="project-title">Orizon</h3>
-
-                <p class="project-category">Web development</p>
-
+                <h3 class="project-title">Weather Application using Python</h3>
+                <p class="project-category">Software · Python App</p>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
+            <li class="project-item active" data-filter-item data-category="quant / finance">
+              <a href="https://colab.research.google.com/drive/1UCwaaTkAAVmtg-CALnWBJkg2dCINaupN" target="_blank" rel="noopener noreferrer">
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-
-                  <img src="./assets/images/project-3.jpg" alt="fundo" loading="lazy">
+                  <img src="./assets/images/RandomGraph.png" alt="Random Graph Triangle Count" loading="lazy">
                 </figure>
-
-                <h3 class="project-title">Fundo</h3>
-
-                <p class="project-category">Web design</p>
-
+                <h3 class="project-title">Random Graph Triangle Count</h3>
+                <p class="project-category">Quant / Finance · Graph Algorithms</p>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="#">
-
+            <li class="project-item active" data-filter-item data-category="software">
+              <a href="https://colab.research.google.com/drive/1IQ24QgGum-vi9fRXDFUWBZU-OUIGn3pS" target="_blank" rel="noopener noreferrer">
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-
-                  <img src="./assets/images/project-4.png" alt="brawlhalla" loading="lazy">
+                  <img src="./assets/images/WeatherForecastingTool.png" alt="Weather Forecasting Tool" loading="lazy">
                 </figure>
-
-                <h3 class="project-title">Brawlhalla</h3>
-
-                <p class="project-category">Applications</p>
-
+                <h3 class="project-title">Weather Forecasting Tool</h3>
+                <p class="project-category">Software · Time Series</p>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
+            <li class="project-item active" data-filter-item data-category="data science">
+              <a href="https://colab.research.google.com/drive/1NPUYN9i9K3q9mNf8s0DAN0PyE-zP3U1I?usp=sharing" target="_blank" rel="noopener noreferrer">
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-
-                  <img src="./assets/images/project-5.png" alt="dsm." loading="lazy">
+                  <img src="./assets/images/WebDataScrapper.png" alt="Twitter Web Data Scraper" loading="lazy">
                 </figure>
-
-                <h3 class="project-title">DSM.</h3>
-
-                <p class="project-category">Web design</p>
-
+                <h3 class="project-title">Web Data Scraper (Twitter)</h3>
+                <p class="project-category">Data Science · NLP Pipeline</p>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
+            <li class="project-item active" data-filter-item data-category="data science">
+              <a href="https://colab.research.google.com/drive/1kTzEAjFG30EgMGakac_mRjxcYr1fiN3z#scrollTo=TCdhp_Ll71CA?usp=sharing" target="_blank" rel="noopener noreferrer">
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-
-                  <img src="./assets/images/project-6.png" alt="metaspark" loading="lazy">
+                  <img src="./assets/images/ScraperCommentLikes.png" alt="Engagement Scraper" loading="lazy">
                 </figure>
-
-                <h3 class="project-title">MetaSpark</h3>
-
-                <p class="project-category">Web design</p>
-
+                <h3 class="project-title">Scraper: Comments & Likes</h3>
+                <p class="project-category">Data Science · Social Analytics</p>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
+            <li class="project-item active" data-filter-item data-category="software">
+              <a href="https://rb.gy/w6mjbo" target="_blank" rel="noopener noreferrer">
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-
-                  <img src="./assets/images/project-7.png" alt="summary" loading="lazy">
+                  <img src="./assets/images/EcomBookStore.png" alt="Ecommerce Bookstore" loading="lazy">
                 </figure>
-
-                <h3 class="project-title">Summary</h3>
-
-                <p class="project-category">Web development</p>
-
+                <h3 class="project-title">Ecommerce Bookstore</h3>
+                <p class="project-category">Software · Full-Stack App</p>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="#">
-
+            <li class="project-item active" data-filter-item data-category="software">
+              <a href="https://goo.gl/jDFVei" target="_blank" rel="noopener noreferrer">
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-
-                  <img src="./assets/images/project-8.jpg" alt="task manager" loading="lazy">
+                  <img src="./assets/images/ChatBot.png" alt="Chat-Bot" loading="lazy">
                 </figure>
-
-                <h3 class="project-title">Task Manager</h3>
-
-                <p class="project-category">Applications</p>
-
+                <h3 class="project-title">Chat-Bot</h3>
+                <p class="project-category">Software · Conversational AI</p>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
+            <li class="project-item active" data-filter-item data-category="data science">
+              <a href="https://colab.research.google.com/drive/12LCKzUWgpbtFBRmzeR8DsMVSMOMo3zAk?usp=sharing" target="_blank" rel="noopener noreferrer">
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-
-                  <img src="./assets/images/project-9.png" alt="arrival" loading="lazy">
+                  <img src="./assets/images/NLP.png" alt="NLP & Visualization Suite" loading="lazy">
                 </figure>
+                <h3 class="project-title">NLP & Visualization Suite</h3>
+                <p class="project-category">
+                  Data Science · Sentiment Analysis · Theme/Topic Modeling
+                </p>
+              </a>
+            </li>
 
-                <h3 class="project-title">Arrival</h3>
+            <!-- extra projects -->
+            <li class="project-item active" data-filter-item data-category="data science">
+              <a href="https://colab.research.google.com/drive/14FLl6UqbzebQRyf4TLBBJv3MvHay2iAX?usp=sharing" target="_blank" rel="noopener noreferrer">
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/SentimentAnalysis.png" alt="Sentiment Analysis Engine" loading="lazy">
+                </figure>
+                <h3 class="project-title">Sentiment Analysis Engine</h3>
+                <p class="project-category">Data Science · NLTK · Social Media Insights</p>
+              </a>
+            </li>
 
-                <p class="project-category">Web development</p>
+            <li class="project-item active" data-filter-item data-category="data science">
+              <a href="https://colab.research.google.com/drive/1O2PoCBZT_1d_JxlrGKOskmTNKEoCWP-E?usp=sharing" target="_blank" rel="noopener noreferrer">
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/TopicModeling.png" alt="Theme & Topic Modeling" loading="lazy">
+                </figure>
+                <h3 class="project-title">Theme & Topic Modeling</h3>
+                <p class="project-category">Data Science · LDA · Research Text Mining</p>
+              </a>
+            </li>
 
+            <li class="project-item active" data-filter-item data-category="quant / finance">
+              <a href="https://colab.research.google.com/drive/1EYmrMsmuy2VZES5nUn9OcZIt2si1gNGj?usp=sharing" target="_blank" rel="noopener noreferrer">
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/ExecutiveSummary.png" alt="Executive Summary Dashboard" loading="lazy">
+                </figure>
+                <h3 class="project-title">Executive Summary Dashboard</h3>
+                <p class="project-category">Quant / Finance · Decision Support</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="data science">
+              <a href="https://colab.research.google.com/drive/1dlUeym7-6hxwi7GWcOYCfalR_NmrIhRN?usp=sharing" target="_blank" rel="noopener noreferrer">
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/ParflowWatershed.png" alt="Parflow Watershed Modeling" loading="lazy">
+                </figure>
+                <h3 class="project-title">Parflow Watershed Modeling</h3>
+                <p class="project-category">Data Science · Hydro Modeling · Spatial Analysis</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="data science">
+              <a href="https://colab.research.google.com/drive/1JU9igENk2QYz5B1-1-c9ehzKvDuInmjW" target="_blank" rel="noopener noreferrer">
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/PDESimulation.png" alt="PDE Simulation Toolkit" loading="lazy">
+                </figure>
+                <h3 class="project-title">PDE Simulation Toolkit</h3>
+                <p class="project-category">Data Science · FDM & FEM · Scientific Computing</p>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="data science">
+              <a href="https://colab.research.google.com/drive/1aE6zYUUe4yQGM6EEP82FBJlPXFjnT7P8" target="_blank" rel="noopener noreferrer">
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/Pythonvisulaization.png" alt="Python Visualization Gallery" loading="lazy">
+                </figure>
+                <h3 class="project-title">Python Visualization Gallery</h3>
+                <p class="project-category">Data Science · Matplotlib · Seaborn-style Dashboards</p>
               </a>
             </li>
 
           </ul>
-
         </section>
-
       </article>
 
 
 
-
-
-      <!--
-        - #BLOG
-      -->
-
+      <!-- BLOG -->
       <article class="blog" data-page="blog">
 
         <header>
-          <h2 class="h2 article-title">Blog</h2>
+          <h2 class="h2 article-title">Writing & Insights</h2>
         </header>
 
-        <section class="blog-posts">
+        <section class="blog-posts reveal-on-scroll">
 
           <ul class="blog-posts-list">
 
             <li class="blog-post-item">
-              <a href="#">
-
+              <a href="#" target="_blank" rel="noopener noreferrer">
                 <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-1.jpg" alt="Design conferences in 2022" loading="lazy">
+                  <img src="./assets/images/QuantModelforenergy.png"
+                    alt="Energy Affordability & Quantitative Modeling" loading="lazy">
                 </figure>
 
                 <div class="blog-content">
 
                   <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
+                    <p class="blog-category">Energy & Utilities</p>
                     <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                    <time datetime="2025-01-01">2025</time>
                   </div>
 
-                  <h3 class="h3 blog-item-title">Design conferences in 2022</h3>
+                  <h3 class="h3 blog-item-title">
+                    Building Quantitative Models for Energy Affordability
+                  </h3>
 
                   <p class="blog-text">
-                    Veritatis et quasi architecto beatae vitae dicta sunt, explicabo.
+                    How predictive modeling and scenario analysis can help utilities better support
+                    low-income households.
                   </p>
 
                 </div>
@@ -984,26 +1110,27 @@
             </li>
 
             <li class="blog-post-item">
-              <a href="#">
-
+              <a href="#" target="_blank" rel="noopener noreferrer">
                 <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-2.jpg" alt="Best fonts every designer" loading="lazy">
+                  <img src="./assets/images/PredictingDrug.png"
+                    alt="Machine Learning in Pharmaceutical Engineering" loading="lazy">
                 </figure>
 
                 <div class="blog-content">
 
                   <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
+                    <p class="blog-category">Pharma & ML</p>
                     <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                    <time datetime="2024-01-01">2024</time>
                   </div>
 
-                  <h3 class="h3 blog-item-title">Best fonts every designer</h3>
+                  <h3 class="h3 blog-item-title">
+                    Predicting Drug Compound Ratios with Deep Learning
+                  </h3>
 
                   <p class="blog-text">
-                    Sed ut perspiciatis, nam libero tempore, cum soluta nobis est eligendi.
+                    Lessons from developing ML models at CIMSEPP to optimize API and excipient
+                    formulations.
                   </p>
 
                 </div>
@@ -1012,26 +1139,27 @@
             </li>
 
             <li class="blog-post-item">
-              <a href="#">
-
+              <a href="#" target="_blank" rel="noopener noreferrer">
                 <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-3.jpg" alt="Design digest #80" loading="lazy">
+                  <img src="./assets/images/RawdatatoDashboard.png"
+                    alt="From Raw Data to Executive Dashboard" loading="lazy">
                 </figure>
 
                 <div class="blog-content">
 
                   <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
+                    <p class="blog-category">Analytics & Storytelling</p>
                     <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                    <time datetime="2024-06-01">2024</time>
                   </div>
 
-                  <h3 class="h3 blog-item-title">Design digest #80</h3>
+                  <h3 class="h3 blog-item-title">
+                    From Raw Data to Executive Dashboard
+                  </h3>
 
                   <p class="blog-text">
-                    Excepteur sint occaecat cupidatat no proident, quis nostrum exercitationem ullam corporis suscipit.
+                    A practical walkthrough of how I structure projects end-to-end — data design,
+                    modeling, and visual storytelling for leaders.
                   </p>
 
                 </div>
@@ -1040,26 +1168,27 @@
             </li>
 
             <li class="blog-post-item">
-              <a href="#">
-
+              <a href="#" target="_blank" rel="noopener noreferrer">
                 <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-4.jpg" alt="UI interactions of the week" loading="lazy">
+                  <img src="./assets/images/Datapipeline.png"
+                    alt="Designing Robust Data Pipelines" loading="lazy">
                 </figure>
 
                 <div class="blog-content">
 
                   <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
+                    <p class="blog-category">Data Engineering</p>
                     <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                    <time datetime="2024-03-15">2024</time>
                   </div>
 
-                  <h3 class="h3 blog-item-title">UI interactions of the week</h3>
+                  <h3 class="h3 blog-item-title">
+                    Designing Robust Data Pipelines for Analytics Teams
+                  </h3>
 
                   <p class="blog-text">
-                    Enim ad minim veniam, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi.
+                    Key patterns and trade-offs when building pipelines that support both BI and
+                    advanced modeling workloads.
                   </p>
 
                 </div>
@@ -1068,26 +1197,27 @@
             </li>
 
             <li class="blog-post-item">
-              <a href="#">
-
+              <a href="#" target="_blank" rel="noopener noreferrer">
                 <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-5.jpg" alt="The forgotten art of spacing" loading="lazy">
+                  <img src="./assets/images/Cyberpsychology.png"
+                    alt="Lessons from Multi-Lab Research" loading="lazy">
                 </figure>
 
                 <div class="blog-content">
 
                   <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
+                    <p class="blog-category">Research & Academia</p>
                     <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                    <time datetime="2023-11-10">2023</time>
                   </div>
 
-                  <h3 class="h3 blog-item-title">The forgotten art of spacing</h3>
+                  <h3 class="h3 blog-item-title">
+                    Lessons from Working Across Cyberpsychology, BioTech & FinTech Labs
+                  </h3>
 
                   <p class="blog-text">
-                    Maxime placeat, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    What collaborating with diverse research teams taught me about reproducibility,
+                    documentation, and knowledge transfer.
                   </p>
 
                 </div>
@@ -1096,26 +1226,27 @@
             </li>
 
             <li class="blog-post-item">
-              <a href="#">
-
+              <a href="#" target="_blank" rel="noopener noreferrer">
                 <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-6.jpg" alt="Design digest #79" loading="lazy">
+                  <img src="./assets/images/RoadmapQuantData.png"
+                    alt="Breaking into Quant & Data Roles" loading="lazy">
                 </figure>
 
                 <div class="blog-content">
 
                   <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
+                    <p class="blog-category">Career</p>
                     <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                    <time datetime="2023-07-20">2023</time>
                   </div>
 
-                  <h3 class="h3 blog-item-title">Design digest #79</h3>
+                  <h3 class="h3 blog-item-title">
+                    Breaking into Quant & Data Roles: A Practical Roadmap
+                  </h3>
 
                   <p class="blog-text">
-                    Optio cumque nihil impedit uo minus quod maxime placeat, velit esse cillum.
+                    A candid guide I share with mentees on projects, skills, and storytelling that
+                    actually move the needle in interviews.
                   </p>
 
                 </div>
@@ -1131,46 +1262,69 @@
 
 
 
-
-
-      <!--
-        - #CONTACT
-      -->
-
+      <!-- CONTACT -->
       <article class="contact" data-page="contact">
 
         <header>
-          <h2 class="h2 article-title">Contact</h2>
+          <h2 class="h2 article-title">Get in Touch</h2>
         </header>
 
-        <section class="mapbox" data-mapbox>
+        <section class="mapbox reveal-on-scroll" data-mapbox>
           <figure>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199666.5651251294!2d-121.58334177520186!3d38.56165006739519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ac672b28397f9%3A0x921f6aaa74197fdb!2sSacramento%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1647608789441!5m2!1sen!2sbd"
+              src="https://www.google.com/maps?q=New+York,+NY,+USA&output=embed"
               width="400" height="300" loading="lazy"></iframe>
           </figure>
         </section>
 
-        <section class="contact-form">
+        <section class="contact-form reveal-on-scroll">
 
           <h3 class="h3 form-title">Contact Form</h3>
 
-          <form action="#" class="form" data-form>
+          <form action="https://formsubmit.co/7satyampandey@gmail.com" 
+                method="POST" 
+                class="form"
+                data-form>
 
             <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+              <input type="text" 
+                    name="fullname" 
+                    class="form-input" 
+                    placeholder="Full name" 
+                    required>
 
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+              <input type="email" 
+                    name="email" 
+                    class="form-input" 
+                    placeholder="Email address" 
+                    required>
             </div>
 
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+            <textarea name="message" 
+                      class="form-input" 
+                      placeholder="Your Message" 
+                      required></textarea>
 
-            <button class="form-btn" type="submit" disabled data-form-btn>
+            <!-- Hidden FormSubmit controls -->
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New message from your portfolio website">
+
+            <!-- Redirect after successful submission -->
+            <input type="hidden" name="_next" value="https://www.pandeysatyam.com">
+
+            <button class="form-btn" type="submit">
               <ion-icon name="paper-plane"></ion-icon>
               <span>Send Message</span>
             </button>
 
           </form>
+
+          <p style="margin-top: 1rem; color: var(--white-2);">
+            Prefer email? Reach me at
+            <a href="mailto:7satyampandey@gmail.com" class="contact-link" style="font-weight: 600;">
+              7satyampandey@gmail.com
+            </a>
+          </p>
 
         </section>
 
@@ -1182,20 +1336,18 @@
 
 
 
-
-
-
-  <!--
-    - custom js link
-  -->
+  <!-- custom js link -->
   <script src="./assets/js/script.js"></script>
 
-  <!--
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <!-- ionicon link -->
+  <script type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <footer class="footer">
+      © 2025 Satyam Pandey. All rights reserved.
+    </footer>
 
 </body>
-
 </html>
