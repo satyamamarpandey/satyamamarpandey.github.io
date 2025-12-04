@@ -1,62 +1,104 @@
-'use strict';
+"use strict";
 
-// element toggle function
+/* ---------------------------------------
+ * Small helper: toggle .active
+ * --------------------------------------- */
+
 const elementToggleFunc = function (elem) {
   elem.classList.toggle("active");
 };
 
-// sidebar variables
+/* ---------------------------------------
+ * SIDEBAR (mobile show contacts)
+ * --------------------------------------- */
+
 const sidebar = document.querySelector("[data-sidebar]");
 const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 
-// sidebar toggle functionality for mobile
-if (sidebarBtn) {
+if (sidebarBtn && sidebar) {
   sidebarBtn.addEventListener("click", function () {
     elementToggleFunc(sidebar);
   });
 }
 
-// testimonials variables
+/* ---------------------------------------
+ * NAVBAR: page switching (About / Resume / ...)
+ * --------------------------------------- */
+
+const navLinks = document.querySelectorAll("[data-nav-link]");
+const pages = document.querySelectorAll("[data-page]");
+
+if (navLinks.length && pages.length) {
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      const target = link.textContent.trim().toLowerCase(); // "about", "resume", ...
+
+      // update nav active state
+      navLinks.forEach((l) => l.classList.remove("active"));
+      link.classList.add("active");
+
+      // show matching page
+      pages.forEach((page) => {
+        if (page.dataset.page === target) {
+          page.classList.add("active");
+        } else {
+          page.classList.remove("active");
+        }
+      });
+    });
+  });
+}
+
+/* ---------------------------------------
+ * TESTIMONIALS MODAL
+ * --------------------------------------- */
+
 const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
 const modalContainer = document.querySelector("[data-modal-container]");
 const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
 const overlay = document.querySelector("[data-overlay]");
-
-// modal variable
 const modalImg = document.querySelector("[data-modal-img]");
 const modalTitle = document.querySelector("[data-modal-title]");
 const modalText = document.querySelector("[data-modal-text]");
 
-// modal toggle function
 const testimonialsModalFunc = function () {
+  if (!modalContainer || !overlay) return;
   modalContainer.classList.toggle("active");
   overlay.classList.toggle("active");
 };
 
-// add click event to all modal items
 for (let i = 0; i < testimonialsItem.length; i++) {
   testimonialsItem[i].addEventListener("click", function () {
+    if (!modalImg || !modalTitle || !modalText) return;
 
     modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
     modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-    modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
-    modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
+    modalTitle.innerHTML =
+      this.querySelector("[data-testimonials-title]").innerHTML;
+    modalText.innerHTML =
+      this.querySelector("[data-testimonials-text]").innerHTML;
 
     testimonialsModalFunc();
   });
 }
 
-// add click event to modal close button
 if (modalCloseBtn && overlay) {
   modalCloseBtn.addEventListener("click", testimonialsModalFunc);
   overlay.addEventListener("click", testimonialsModalFunc);
 }
 
-// custom select variables
+/* ---------------------------------------
+ * PORTFOLIO FILTERS
+ * --------------------------------------- */
+
+// custom select (mobile)
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
 const selectValue = document.querySelector("[data-selecct-value]");
+
+// filter buttons (desktop)
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
+const filterItems = document.querySelectorAll("[data-filter-item]");
 
 if (select) {
   select.addEventListener("click", function () {
@@ -64,55 +106,42 @@ if (select) {
   });
 }
 
-// filter variables
-const filterItems = document.querySelectorAll("[data-filter-item]");
-
 const filterFunc = function (selectedValue) {
-  for (let i = 0; i < filterItems.length; i++) {
+  filterItems.forEach((item) => {
     if (selectedValue === "all") {
-      filterItems[i].classList.add("active");
-    } else if (selectedValue === filterItems[i].dataset.category) {
-      filterItems[i].classList.add("active");
+      item.classList.add("active");
+    } else if (selectedValue === item.dataset.category) {
+      item.classList.add("active");
     } else {
-      filterItems[i].classList.remove("active");
+      item.classList.remove("active");
     }
-  }
+  });
 };
 
-// add event in all select items
-for (let i = 0; i < selectItems.length; i++) {
-  selectItems[i].addEventListener("click", function () {
-
-    let selectedValue = this.innerText.toLowerCase();
-    if (selectValue) {
-      selectValue.innerText = this.innerText;
-    }
-    if (select) {
-      elementToggleFunc(select);
-    }
+// select dropdown (mobile)
+selectItems.forEach((item) => {
+  item.addEventListener("click", function () {
+    const selectedValue = this.innerText.toLowerCase();
+    if (selectValue) selectValue.innerText = this.innerText;
+    if (select) elementToggleFunc(select);
     filterFunc(selectedValue);
   });
-}
+});
 
-// add event in all filter button items for large screen
-let lastClickedBtn = filterBtn[0];
+// filter buttons (desktop)
+if (filterBtn.length) {
+  let lastClickedBtn = filterBtn[0];
+  filterBtn.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const selectedValue = this.innerText.toLowerCase();
+      if (selectValue) selectValue.innerText = this.innerText;
+      filterFunc(selectedValue);
 
-for (let i = 0; i < filterBtn.length; i++) {
-
-  filterBtn[i].addEventListener("click", function () {
-
-    let selectedValue = this.innerText.toLowerCase();
-    if (selectValue) {
-      selectValue.innerText = this.innerText;
-    }
-    filterFunc(selectedValue);
-
-    lastClickedBtn.classList.remove("active");
-    this.classList.add("active");
-    lastClickedBtn = this;
-
+      lastClickedBtn.classList.remove("active");
+      this.classList.add("active");
+      lastClickedBtn = this;
+    });
   });
-
 }
 
 /* ---------------------------------------
@@ -132,12 +161,10 @@ function setFormStatus(message, type) {
 }
 
 if (form) {
-  // disable button initially
-  if (formBtn) {
-    formBtn.setAttribute("disabled", "");
-  }
+  // button disabled initially
+  if (formBtn) formBtn.setAttribute("disabled", "");
 
-  // enable/disable button based on validity
+  // enable/disable based on validity
   formInputs.forEach((input) => {
     input.addEventListener("input", () => {
       if (!formBtn) return;
@@ -182,21 +209,17 @@ if (form) {
         form.reset();
         formBtn.removeAttribute("disabled");
         if (btnSpan) btnSpan.textContent = originalBtnText;
-
-        // hide message after ~2.5s
         setTimeout(() => setFormStatus("", null), 2500);
       }, 300);
       return;
     }
 
-    // Live site: real POST to FormSubmit
+    // Live: real POST to FormSubmit
     try {
       const response = await fetch(form.action, {
         method: "POST",
         body: formData,
-        headers: {
-          Accept: "application/json",
-        },
+        headers: { Accept: "application/json" },
       });
 
       if (response.ok) {
@@ -220,16 +243,14 @@ if (form) {
     } finally {
       formBtn.removeAttribute("disabled");
       if (btnSpan) btnSpan.textContent = originalBtnText;
-
-      // hide message after ~3s
       setTimeout(() => setFormStatus("", null), 3000);
     }
   });
 }
 
-/* ------------------------------
+/* ---------------------------------------
  * Dynamic rotating role title
- * ------------------------------ */
+ * --------------------------------------- */
 
 const roleTitle = document.getElementById("role-title");
 
@@ -263,16 +284,16 @@ if (roleTitle) {
   }
 }
 
-/* ------------------------------
+/* ---------------------------------------
  * Reveal-on-scroll animations
- * ------------------------------ */
+ * --------------------------------------- */
 
 const revealElements = document.querySelectorAll(".reveal-on-scroll");
 
 if ("IntersectionObserver" in window) {
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
           observer.unobserve(entry.target);
@@ -282,28 +303,25 @@ if ("IntersectionObserver" in window) {
     { threshold: 0.15 }
   );
 
-  revealElements.forEach(el => revealObserver.observe(el));
+  revealElements.forEach((el) => revealObserver.observe(el));
 } else {
-  // Fallback: show everything
-  revealElements.forEach(el => el.classList.add("is-visible"));
+  revealElements.forEach((el) => el.classList.add("is-visible"));
 }
 
-/* ------------------------------
+/* ---------------------------------------
  * Animated skill bars
- * ------------------------------ */
+ * --------------------------------------- */
 
 const skillBars = document.querySelectorAll(".skill-progress-fill");
 
 if ("IntersectionObserver" in window) {
   const skillsObserver = new IntersectionObserver(
     (entries, observer) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const bar = entry.target;
           const value = bar.dataset.skillValue;
-          if (value) {
-            bar.style.width = value + "%";
-          }
+          if (value) bar.style.width = value + "%";
           observer.unobserve(bar);
         }
       });
@@ -311,23 +329,20 @@ if ("IntersectionObserver" in window) {
     { threshold: 0.4 }
   );
 
-  skillBars.forEach(bar => {
+  skillBars.forEach((bar) => {
     bar.style.width = "0%";
     skillsObserver.observe(bar);
   });
 } else {
-  skillBars.forEach(bar => {
+  skillBars.forEach((bar) => {
     const value = bar.dataset.skillValue;
-    if (value) {
-      bar.style.width = value + "%";
-    }
+    if (value) bar.style.width = value + "%";
   });
 }
 
-
-/* ------------------------------
+/* ---------------------------------------
  * Simple Satyam Chatbot
- * ------------------------------ */
+ * --------------------------------------- */
 
 const chatbotToggle = document.getElementById("chatbot-toggle");
 const chatbot = document.getElementById("chatbot");
@@ -336,7 +351,6 @@ const chatbotForm = document.getElementById("chatbot-form");
 const chatbotInput = document.getElementById("chatbot-input");
 const chatbotMessages = document.getElementById("chatbot-messages");
 
-// ✅ your real resume link (direct download format)
 const RESUME_LINK =
   "https://drive.google.com/uc?export=download&id=1rvuMASPPef4KxV474H-LwMIt7C9_rHMj";
 
@@ -364,17 +378,9 @@ function addChatMessage(sender, text) {
   chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
 
-/**
- * Very lightweight “AI-style” reply:
- * - Handles greetings / small talk
- * - Answers about you (background, skills, projects, contact)
- * - Shares resume when they mention it
- * - Has a friendly default reply for anything else
- */
 function getBotReply(message) {
   const m = message.toLowerCase().trim();
 
-  // greetings
   if (/\b(hi|hey|hello|yo|hola|namaste)\b/.test(m)) {
     return (
       "Hey! 👋 I’m Satyam’s assistant.<br>" +
@@ -382,17 +388,14 @@ function getBotReply(message) {
     );
   }
 
-  // small talk
   if (m.includes("how are you")) {
     return "I’m doing great and always ready to talk about Satyam. 😊 How can I help you?";
   }
 
-  // thanks
   if (/\b(thanks|thank you|appreciate)\b/.test(m)) {
     return "You’re welcome! If you’d like to know more about my experience or projects, just ask. 🙌";
   }
 
-  // resume
   if (m.includes("resume") || m.includes("cv") || m.includes("profile")) {
     return (
       "Sure — here’s my resume download link:<br>" +
@@ -400,7 +403,6 @@ function getBotReply(message) {
     );
   }
 
-  // who / about
   if (
     m.includes("who are you") ||
     m.includes("about yourself") ||
@@ -415,7 +417,6 @@ function getBotReply(message) {
     );
   }
 
-  // experience / career
   if (
     m.includes("experience") ||
     m.includes("work history") ||
@@ -429,7 +430,6 @@ function getBotReply(message) {
     );
   }
 
-  // skills / stack
   if (
     m.includes("skills") ||
     m.includes("tech stack") ||
@@ -442,7 +442,6 @@ function getBotReply(message) {
     );
   }
 
-  // projects
   if (m.includes("project") || m.includes("projects")) {
     return (
       "Some highlights:<br>" +
@@ -453,7 +452,6 @@ function getBotReply(message) {
     );
   }
 
-  // contact
   if (
     m.includes("contact") ||
     m.includes("reach") ||
@@ -468,7 +466,6 @@ function getBotReply(message) {
     );
   }
 
-  // default: friendly “AI-style” answer
   return (
     "Nice question! I’m a simple on-page bot, so I’m best at talking about Satyam — " +
     "his background, skills, projects, and resume.<br><br>" +
@@ -480,19 +477,15 @@ function getBotReply(message) {
   );
 }
 
-// open / close handlers
-chatbotToggle &&
-  chatbotToggle.addEventListener("click", () => {
-    toggleChat();
-  });
+if (chatbotToggle) {
+  chatbotToggle.addEventListener("click", () => toggleChat());
+}
 
-chatbotClose &&
-  chatbotClose.addEventListener("click", () => {
-    toggleChat(false);
-  });
+if (chatbotClose) {
+  chatbotClose.addEventListener("click", () => toggleChat(false));
+}
 
-// submit question
-chatbotForm &&
+if (chatbotForm) {
   chatbotForm.addEventListener("submit", (e) => {
     e.preventDefault();
     if (!chatbotInput || !chatbotInput.value.trim()) return;
@@ -503,3 +496,4 @@ chatbotForm &&
     const reply = getBotReply(text);
     setTimeout(() => addChatMessage("bot", reply), 250);
   });
+}
