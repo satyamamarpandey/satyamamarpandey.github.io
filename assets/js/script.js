@@ -1,485 +1,410 @@
 "use strict";
 
-/* ---------------------------------------
- * Small helper: toggle .active
- * --------------------------------------- */
+(function () {
+  const t = e => e.classList.toggle("active");
 
-const elementToggleFunc = function (elem) {
-  elem.classList.toggle("active");
-};
+  // sidebar
+  const s = document.querySelector("[data-sidebar]"),
+    r = document.querySelector("[data-sidebar-btn]");
+  if (s && r) {
+    r.addEventListener("click", () => t(s));
+  }
 
-/* ---------------------------------------
- * SIDEBAR (mobile show contacts)
- * --------------------------------------- */
+  // nav
+  const n = document.querySelectorAll("[data-nav-link]"),
+    p = document.querySelectorAll("[data-page]");
+  if (n.length && p.length) {
+    n.forEach(o => {
+      o.addEventListener("click", () => {
+        const c = o.textContent.trim().toLowerCase();
+        n.forEach(i => i.classList.remove("active"));
+        o.classList.add("active");
+        p.forEach(i => {
+          i.dataset.page === c
+            ? i.classList.add("active")
+            : i.classList.remove("active");
+        });
+      });
+    });
+  }
 
-const sidebar = document.querySelector("[data-sidebar]");
-const sidebarBtn = document.querySelector("[data-sidebar-btn]");
+  // testimonials modal
+  const m = document.querySelectorAll("[data-testimonials-item]"),
+    d = document.querySelector("[data-modal-container]"),
+    g = document.querySelector("[data-modal-close-btn]"),
+    v = document.querySelector("[data-overlay]"),
+    y = document.querySelector("[data-modal-img]"),
+    w = document.querySelector("[data-modal-title]"),
+    b = document.querySelector("[data-modal-text]");
 
-if (sidebarBtn && sidebar) {
-  sidebarBtn.addEventListener("click", function () {
-    elementToggleFunc(sidebar);
+  const M = () => {
+    if (!d || !v) return;
+    d.classList.toggle("active");
+    v.classList.toggle("active");
+  };
+
+  for (let i = 0; i < m.length; i++) {
+    m[i].addEventListener("click", function () {
+      if (!y || !w || !b) return;
+      const a = this.querySelector("[data-testimonials-avatar]");
+      const l = this.querySelector("[data-testimonials-title]");
+      const h = this.querySelector("[data-testimonials-text]");
+      y.src = a ? a.src : "";
+      y.alt = a ? a.alt : "";
+      w.innerHTML = l ? l.innerHTML : "";
+      b.innerHTML = h ? h.innerHTML : "";
+      M();
+    });
+  }
+
+  if (g && v) {
+    g.addEventListener("click", M);
+    v.addEventListener("click", M);
+  }
+
+  // portfolio filters
+  const S = document.querySelector("[data-select]"),
+    q = document.querySelectorAll("[data-select-item]"),
+    k = document.querySelector("[data-selecct-value]"),
+    x = document.querySelectorAll("[data-filter-btn]"),
+    C = document.querySelectorAll("[data-filter-item]");
+
+  S && S.addEventListener("click", function () {
+    t(this);
   });
-}
 
-/* ---------------------------------------
- * NAVBAR: page switching (About / Resume / ...)
- * --------------------------------------- */
+  const F = a => {
+    C.forEach(e => {
+      a === "all" || a === e.dataset.category
+        ? e.classList.add("active")
+        : e.classList.remove("active");
+    });
+  };
 
-const navLinks = document.querySelectorAll("[data-nav-link]");
-const pages = document.querySelectorAll("[data-page]");
+  q.forEach(e => {
+    e.addEventListener("click", function () {
+      const a = this.innerText.toLowerCase();
+      k && (k.innerText = this.innerText);
+      S && t(S);
+      F(a);
+    });
+  });
 
-if (navLinks.length && pages.length) {
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      const target = link.textContent.trim().toLowerCase(); // "about", "resume", ...
+  if (x.length) {
+    let a = x[0];
+    x.forEach(e => {
+      e.addEventListener("click", function () {
+        const l = this.innerText.toLowerCase();
+        k && (k.innerText = this.innerText);
+        F(l);
+        a.classList.remove("active");
+        this.classList.add("active");
+        a = this;
+      });
+    });
+  }
 
-      // update nav active state
-      navLinks.forEach((l) => l.classList.remove("active"));
-      link.classList.add("active");
+  // contact form + web3forms
+  const f = document.querySelector("[data-form]"),
+    I = document.querySelectorAll("[data-form-input]"),
+    B = document.querySelector("[data-form-btn]"),
+    L = document.querySelector("[data-form-status]");
 
-      // show matching page
-      pages.forEach((page) => {
-        if (page.dataset.page === target) {
-          page.classList.add("active");
+  if (f && I && B) {
+    B.setAttribute("disabled", "");
+    I.forEach(e => {
+      e.addEventListener("input", () => {
+        f.checkValidity()
+          ? B.removeAttribute("disabled")
+          : B.setAttribute("disabled", "");
+      });
+    });
+  }
+
+  const A = () => {
+    if (!L) return;
+    setTimeout(() => {
+      L.textContent = "";
+      L.classList.remove("success", "error");
+    }, 3000); // 3 seconds
+  };
+
+  f &&
+    f.addEventListener("submit", async e => {
+      e.preventDefault();
+      if (!f.checkValidity()) {
+        f.reportValidity();
+        return;
+      }
+
+      if (B) {
+        B.setAttribute("disabled", "");
+        B.classList.add("is-loading");
+        const a = B.querySelector("span");
+        a && (a.textContent = "Sending...");
+      }
+
+      if (L) {
+        L.textContent = "Sending your message...";
+        L.classList.remove("success", "error");
+      }
+
+      const a = new FormData(f);
+
+      try {
+        const l = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: a
+        });
+        const h = await l.json();
+
+        if (h.success) {
+          if (L) {
+            L.textContent =
+              "Thanks for reaching out! I’ll get back to you soon.";
+            L.classList.add("success");
+          }
+          f.reset();
+          A(); // hide after 3s
         } else {
-          page.classList.remove("active");
+          console.error(h);
+          if (L) {
+            L.textContent =
+              "Something went wrong. Please email me directly at 7satyampandey@gmail.com.";
+            L.classList.add("error");
+          }
+          A();
         }
-      });
-    });
-  });
-}
-
-/* ---------------------------------------
- * TESTIMONIALS MODAL
- * --------------------------------------- */
-
-const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
-const modalContainer = document.querySelector("[data-modal-container]");
-const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
-const overlay = document.querySelector("[data-overlay]");
-const modalImg = document.querySelector("[data-modal-img]");
-const modalTitle = document.querySelector("[data-modal-title]");
-const modalText = document.querySelector("[data-modal-text]");
-
-const testimonialsModalFunc = function () {
-  if (!modalContainer || !overlay) return;
-  modalContainer.classList.toggle("active");
-  overlay.classList.toggle("active");
-};
-
-for (let i = 0; i < testimonialsItem.length; i++) {
-  testimonialsItem[i].addEventListener("click", function () {
-    if (!modalImg || !modalTitle || !modalText) return;
-
-    modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
-    modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-    modalTitle.innerHTML =
-      this.querySelector("[data-testimonials-title]").innerHTML;
-    modalText.innerHTML =
-      this.querySelector("[data-testimonials-text]").innerHTML;
-
-    testimonialsModalFunc();
-  });
-}
-
-if (modalCloseBtn && overlay) {
-  modalCloseBtn.addEventListener("click", testimonialsModalFunc);
-  overlay.addEventListener("click", testimonialsModalFunc);
-}
-
-/* ---------------------------------------
- * PORTFOLIO FILTERS
- * --------------------------------------- */
-
-// custom select (mobile)
-const select = document.querySelector("[data-select]");
-const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-selecct-value]");
-
-// filter buttons (desktop)
-const filterBtn = document.querySelectorAll("[data-filter-btn]");
-const filterItems = document.querySelectorAll("[data-filter-item]");
-
-if (select) {
-  select.addEventListener("click", function () {
-    elementToggleFunc(this);
-  });
-}
-
-const filterFunc = function (selectedValue) {
-  filterItems.forEach((item) => {
-    if (selectedValue === "all") {
-      item.classList.add("active");
-    } else if (selectedValue === item.dataset.category) {
-      item.classList.add("active");
-    } else {
-      item.classList.remove("active");
-    }
-  });
-};
-
-// select dropdown (mobile)
-selectItems.forEach((item) => {
-  item.addEventListener("click", function () {
-    const selectedValue = this.innerText.toLowerCase();
-    if (selectValue) selectValue.innerText = this.innerText;
-    if (select) elementToggleFunc(select);
-    filterFunc(selectedValue);
-  });
-});
-
-// filter buttons (desktop)
-if (filterBtn.length) {
-  let lastClickedBtn = filterBtn[0];
-  filterBtn.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const selectedValue = this.innerText.toLowerCase();
-      if (selectValue) selectValue.innerText = this.innerText;
-      filterFunc(selectedValue);
-
-      lastClickedBtn.classList.remove("active");
-      this.classList.add("active");
-      lastClickedBtn = this;
-    });
-  });
-}
-
-/* ---------------------------------------
- * CONTACT FORM: validation + AJAX submit
- * --------------------------------------- */
-
-// contact form variables
-const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
-const formBtn = document.querySelector("[data-form-btn]");
-const formStatus = document.querySelector("[data-form-status]");
-
-// enable/disable button based on validity (optional)
-if (form && formInputs && formBtn) {
-  formBtn.setAttribute("disabled", "");
-
-  formInputs.forEach((input) => {
-    input.addEventListener("input", () => {
-      if (form.checkValidity()) {
-        formBtn.removeAttribute("disabled");
-      } else {
-        formBtn.setAttribute("disabled", "");
+      } catch (err) {
+        console.error(err);
+        if (L) {
+          L.textContent =
+            "Unable to send right now. Please email me directly at 7satyampandey@gmail.com.";
+          L.classList.add("error");
+        }
+        A();
+      } finally {
+        if (B) {
+          B.removeAttribute("disabled");
+          B.classList.remove("is-loading");
+          const a = B.querySelector("span");
+          a && (a.textContent = "Send Message");
+        }
       }
     });
-  });
-}
 
-// handle submit via Web3Forms
-if (form) {
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    if (formBtn) {
-      formBtn.setAttribute("disabled", "");
-      formBtn.classList.add("is-loading");
-      const span = formBtn.querySelector("span");
-      if (span) span.textContent = "Sending...";
-    }
-
-    if (formStatus) {
-      formStatus.textContent = "Sending your message...";
-      formStatus.classList.remove("success", "error");
-    }
-
-    const formData = new FormData(form);
-
+  // rotating role title
+  const T = document.getElementById("role-title");
+  if (T) {
+    let a = [];
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        if (formStatus) {
-          formStatus.textContent =
-            "Thanks for reaching out! I’ll get back to you soon.";
-          formStatus.classList.add("success");
-        }
-        form.reset();
-      } else {
-        console.error(result);
-        if (formStatus) {
-          formStatus.textContent =
-            "Something went wrong. Please email me directly at 7satyampandey@gmail.com.";
-          formStatus.classList.add("error");
-        }
-      }
-    } catch (error) {
-      console.error(error);
-      if (formStatus) {
-        formStatus.textContent =
-          "Unable to send right now. Please email me directly at 7satyampandey@gmail.com.";
-        formStatus.classList.add("error");
-      }
-    } finally {
-      if (formBtn) {
-        formBtn.removeAttribute("disabled");
-        formBtn.classList.remove("is-loading");
-        const span = formBtn.querySelector("span");
-        if (span) span.textContent = "Send Message";
-      }
+      a = JSON.parse(T.dataset.roles || "[]");
+    } catch (e) {
+      console.error("Unable to parse roles", e);
     }
-  });
-}
-
-/* ---------------------------------------
- * Dynamic rotating role title
- * --------------------------------------- */
-
-const roleTitle = document.getElementById("role-title");
-
-if (roleTitle) {
-  let roles = [];
-  try {
-    roles = JSON.parse(roleTitle.dataset.roles || "[]");
-  } catch (e) {
-    console.error("Unable to parse roles", e);
-  }
-
-  if (roles.length > 1) {
-    let roleIndex = 0;
-
-    const updateRole = () => {
-      roleIndex = (roleIndex + 1) % roles.length;
-      roleTitle.classList.add("fade-out");
-
-      setTimeout(() => {
-        roleTitle.textContent = roles[roleIndex];
-        roleTitle.classList.remove("fade-out");
-        roleTitle.classList.add("fade-in");
-
+    if (a.length > 1) {
+      let i = 0;
+      const l = () => {
+        i = (i + 1) % a.length;
+        T.classList.add("fade-out");
         setTimeout(() => {
-          roleTitle.classList.remove("fade-in");
-        }, 400);
-      }, 250);
-    };
-
-    setInterval(updateRole, 4000);
+          T.textContent = a[i];
+          T.classList.remove("fade-out");
+          T.classList.add("fade-in");
+          setTimeout(() => {
+            T.classList.remove("fade-in");
+          }, 400);
+        }, 250);
+      };
+      setInterval(l, 4000);
+    }
   }
-}
 
-/* ---------------------------------------
- * Reveal-on-scroll animations
- * --------------------------------------- */
-
-const revealElements = document.querySelectorAll(".reveal-on-scroll");
-
-if ("IntersectionObserver" in window) {
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
-
-  revealElements.forEach((el) => revealObserver.observe(el));
-} else {
-  revealElements.forEach((el) => el.classList.add("is-visible"));
-}
-
-/* ---------------------------------------
- * Animated skill bars
- * --------------------------------------- */
-
-const skillBars = document.querySelectorAll(".skill-progress-fill");
-
-if ("IntersectionObserver" in window) {
-  const skillsObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const bar = entry.target;
-          const value = bar.dataset.skillValue;
-          if (value) bar.style.width = value + "%";
-          observer.unobserve(bar);
-        }
-      });
-    },
-    { threshold: 0.4 }
-  );
-
-  skillBars.forEach((bar) => {
-    bar.style.width = "0%";
-    skillsObserver.observe(bar);
-  });
-} else {
-  skillBars.forEach((bar) => {
-    const value = bar.dataset.skillValue;
-    if (value) bar.style.width = value + "%";
-  });
-}
-
-/* ---------------------------------------
- * Simple Satyam Chatbot
- * --------------------------------------- */
-
-const chatbotToggle = document.getElementById("chatbot-toggle");
-const chatbot = document.getElementById("chatbot");
-const chatbotClose = document.getElementById("chatbot-close");
-const chatbotForm = document.getElementById("chatbot-form");
-const chatbotInput = document.getElementById("chatbot-input");
-const chatbotMessages = document.getElementById("chatbot-messages");
-
-const RESUME_LINK =
-  "https://drive.google.com/uc?export=download&id=1rvuMASPPef4KxV474H-LwMIt7C9_rHMj";
-
-function toggleChat(open) {
-  if (!chatbot) return;
-  const isOpen = chatbot.classList.contains("open");
-  if (open === true || (!isOpen && open !== false)) {
-    chatbot.classList.add("open");
+  // reveal-on-scroll
+  const O = document.querySelectorAll(".reveal-on-scroll");
+  if ("IntersectionObserver" in window) {
+    const a = new IntersectionObserver(
+      (e, o) => {
+        e.forEach(i => {
+          if (i.isIntersecting) {
+            i.target.classList.add("is-visible");
+            o.unobserve(i.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    O.forEach(e => a.observe(e));
   } else {
-    chatbot.classList.remove("open");
+    O.forEach(e => e.classList.add("is-visible"));
   }
-}
 
-function addChatMessage(sender, text) {
-  if (!chatbotMessages) return;
-  const wrapper = document.createElement("div");
-  wrapper.className = "chatbot-message-row";
+  // skill bars
+  const P = document.querySelectorAll(".skill-progress-fill");
+  if ("IntersectionObserver" in window) {
+    const a = new IntersectionObserver(
+      (e, o) => {
+        e.forEach(i => {
+          if (i.isIntersecting) {
+            const l = i.target,
+              h = l.dataset.skillValue;
+            h && (l.style.width = h + "%");
+            o.unobserve(l);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    P.forEach(e => {
+      e.style.width = "0%";
+      a.observe(e);
+    });
+  } else {
+    P.forEach(e => {
+      const a = e.dataset.skillValue;
+      a && (e.style.width = a + "%");
+    });
+  }
 
-  const msg = document.createElement("div");
-  msg.className = "chatbot-message " + (sender === "user" ? "user" : "bot");
-  msg.innerHTML = text;
+  // simple chatbot
+  const E = document.getElementById("chatbot-toggle"),
+    D = document.getElementById("chatbot"),
+    R = document.getElementById("chatbot-close"),
+    N = document.getElementById("chatbot-form"),
+    H = document.getElementById("chatbot-input"),
+    U = document.getElementById("chatbot-messages"),
+    J =
+      "https://drive.google.com/uc?export=download&id=1rvuMASPPef4KxV474H-LwMIt7C9_rHMj";
 
-  wrapper.appendChild(msg);
-  chatbotMessages.appendChild(wrapper);
-  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-}
+  function z(e) {
+    if (!D) return;
+    const a = D.classList.contains("open");
+    if (e === true || (!a && e !== false)) D.classList.add("open");
+    else D.classList.remove("open");
+  }
 
-function getBotReply(message) {
-  const m = message.toLowerCase().trim();
+  function G(e, a) {
+    if (!U) return;
+    const l = document.createElement("div");
+    l.className = "chatbot-message-row";
+    const h = document.createElement("div");
+    h.className = "chatbot-message " + (e === "user" ? "user" : "bot");
+    h.innerHTML = a;
+    l.appendChild(h);
+    U.appendChild(l);
+    U.scrollTop = U.scrollHeight;
+  }
 
-  if (/\b(hi|hey|hello|yo|hola|namaste)\b/.test(m)) {
+  function K(msg) {
+    const m = msg.toLowerCase().trim();
+
+    if (/\b(hi|hey|hello|yo|hola|namaste)\b/.test(m)) {
+      return (
+        "Hey! 👋 I’m Satyam’s assistant.<br>" +
+        "Ask me anything about my background, skills, projects, or resume."
+      );
+    }
+
+    if (m.includes("how are you")) {
+      return "I’m doing great and always ready to talk about Satyam. 😊 How can I help you?";
+    }
+
+    if (/\b(thanks|thank you|appreciate)\b/.test(m)) {
+      return "You’re welcome! If you’d like to know more about my experience or projects, just ask. 🙌";
+    }
+
+    if (m.includes("resume") || m.includes("cv") || m.includes("profile")) {
+      return (
+        "Sure — here’s my resume download link:<br>" +
+        `<a href="${J}" target="_blank" class="contact-link">Open Resume</a>`
+      );
+    }
+
+    if (
+      m.includes("who are you") ||
+      m.includes("about yourself") ||
+      m.includes("about you") ||
+      m.includes("background") ||
+      m.includes("tell me about you")
+    ) {
+      return (
+        "I’m Satyam Pandey, a Senior Quantitative Analyst and data scientist. " +
+        "I work on quantitative modeling, data engineering, and ML solutions across " +
+        "energy, finance, and research."
+      );
+    }
+
+    if (
+      m.includes("experience") ||
+      m.includes("work history") ||
+      m.includes("career") ||
+      m.includes("where have you worked")
+    ) {
+      return (
+        "I’ve worked with Exelon (energy & utilities), PECO, the National Science Foundation " +
+        "(CIMSEPP pharma research), and ZS Associates — focusing on data science, " +
+        "quantitative modeling, and cloud analytics."
+      );
+    }
+
+    if (
+      m.includes("skills") ||
+      m.includes("tech stack") ||
+      m.includes("tools") ||
+      m.includes("what do you use")
+    ) {
+      return (
+        "Core skills: Python, R, SQL, statistics, ML, NLP, time series, data engineering, " +
+        "Tableau / Power BI, and cloud platforms like AWS, Azure, and GCP."
+      );
+    }
+
+    if (m.includes("project") || m.includes("projects")) {
+      return (
+        "Some highlights:<br>" +
+        "• Affordability models and customer analytics for utilities at Exelon<br>" +
+        "• Mail-Stream (mass emailer) & Path Finder AI (resume analyzer)<br>" +
+        "• Pharma ML models with NSF CIMSEPP<br>" +
+        "• Several dashboards and research pipelines across energy, finance, and cyberpsychology."
+      );
+    }
+
+    if (
+      m.includes("contact") ||
+      m.includes("reach") ||
+      m.includes("email") ||
+      m.includes("connect")
+    ) {
+      return (
+        'You can reach me at ' +
+        '<a href="mailto:7satyampandey@gmail.com" class="contact-link">7satyampandey@gmail.com</a> ' +
+        "or via LinkedIn: " +
+        '<a href="https://www.linkedin.com/in/pandeysatyam" target="_blank" class="contact-link">LinkedIn Profile</a>.'
+      );
+    }
+
     return (
-      "Hey! 👋 I’m Satyam’s assistant.<br>" +
-      "Ask me anything about my background, skills, projects, or resume."
+      "Nice question! I’m a simple on-page bot, so I’m best at talking about Satyam — " +
+      "his background, skills, projects, and resume.<br><br>" +
+      "You can try asking things like:<br>" +
+      "• “What experience do you have?”<br>" +
+      "• “What skills do you know?”<br>" +
+      "• “What projects have you done?”<br>" +
+      "• “Share your resume.”"
     );
   }
 
-  if (m.includes("how are you")) {
-    return "I’m doing great and always ready to talk about Satyam. 😊 How can I help you?";
-  }
+  E && E.addEventListener("click", () => z());
+  R && R.addEventListener("click", () => z(false));
 
-  if (/\b(thanks|thank you|appreciate)\b/.test(m)) {
-    return "You’re welcome! If you’d like to know more about my experience or projects, just ask. 🙌";
-  }
-
-  if (m.includes("resume") || m.includes("cv") || m.includes("profile")) {
-    return (
-      "Sure — here’s my resume download link:<br>" +
-      `<a href="${RESUME_LINK}" target="_blank" class="contact-link">Open Resume</a>`
-    );
-  }
-
-  if (
-    m.includes("who are you") ||
-    m.includes("about yourself") ||
-    m.includes("about you") ||
-    m.includes("background") ||
-    m.includes("tell me about you")
-  ) {
-    return (
-      "I’m Satyam Pandey, a Senior Quantitative Analyst and data scientist. " +
-      "I work on quantitative modeling, data engineering, and ML solutions across " +
-      "energy, finance, and research."
-    );
-  }
-
-  if (
-    m.includes("experience") ||
-    m.includes("work history") ||
-    m.includes("career") ||
-    m.includes("where have you worked")
-  ) {
-    return (
-      "I’ve worked with Exelon (energy & utilities), PECO, the National Science Foundation " +
-      "(CIMSEPP pharma research), and ZS Associates — focusing on data science, " +
-      "quantitative modeling, and cloud analytics."
-    );
-  }
-
-  if (
-    m.includes("skills") ||
-    m.includes("tech stack") ||
-    m.includes("tools") ||
-    m.includes("what do you use")
-  ) {
-    return (
-      "Core skills: Python, R, SQL, statistics, ML, NLP, time series, data engineering, " +
-      "Tableau / Power BI, and cloud platforms like AWS, Azure, and GCP."
-    );
-  }
-
-  if (m.includes("project") || m.includes("projects")) {
-    return (
-      "Some highlights:<br>" +
-      "• Affordability models and customer analytics for utilities at Exelon<br>" +
-      "• Mail-Stream (mass emailer) & Path Finder AI (resume analyzer)<br>" +
-      "• Pharma ML models with NSF CIMSEPP<br>" +
-      "• Several dashboards and research pipelines across energy, finance, and cyberpsychology."
-    );
-  }
-
-  if (
-    m.includes("contact") ||
-    m.includes("reach") ||
-    m.includes("email") ||
-    m.includes("connect")
-  ) {
-    return (
-      'You can reach me at ' +
-      '<a href="mailto:7satyampandey@gmail.com" class="contact-link">7satyampandey@gmail.com</a> ' +
-      "or via LinkedIn: " +
-      '<a href="https://www.linkedin.com/in/pandeysatyam" target="_blank" class="contact-link">LinkedIn Profile</a>.'
-    );
-  }
-
-  return (
-    "Nice question! I’m a simple on-page bot, so I’m best at talking about Satyam — " +
-    "his background, skills, projects, and resume.<br><br>" +
-    "You can try asking things like:<br>" +
-    "• “What experience do you have?”<br>" +
-    "• “What skills do you know?”<br>" +
-    "• “What projects have you done?”<br>" +
-    "• “Share your resume.”"
-  );
-}
-
-if (chatbotToggle) {
-  chatbotToggle.addEventListener("click", () => toggleChat());
-}
-
-if (chatbotClose) {
-  chatbotClose.addEventListener("click", () => toggleChat(false));
-}
-
-if (chatbotForm) {
-  chatbotForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!chatbotInput || !chatbotInput.value.trim()) return;
-    const text = chatbotInput.value.trim();
-    chatbotInput.value = "";
-
-    addChatMessage("user", text);
-    const reply = getBotReply(text);
-    setTimeout(() => addChatMessage("bot", reply), 250);
-  });
-}
+  N &&
+    N.addEventListener("submit", e => {
+      e.preventDefault();
+      if (!H || !H.value.trim()) return;
+      const a = H.value.trim();
+      H.value = "";
+      G("user", a);
+      const l = K(a);
+      setTimeout(() => G("bot", l), 250);
+    });
+})();
