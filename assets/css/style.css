@@ -2222,13 +2222,13 @@ textarea.form-input::-webkit-resizer { display: none; }
 @media (max-width: 480px) {
   .chatbot-toggle {
     right: 12px;
-    bottom: calc(65px + env(safe-area-inset-bottom, 0px));
+    bottom: calc(64px + env(safe-area-inset-bottom, 0px));
   }
 
   .chatbot-container {
     right: 6px;
     left: 6px;
-    bottom: calc(125px + env(safe-area-inset-bottom, 0px));
+    bottom: calc(124px + env(safe-area-inset-bottom, 0px));
     border-radius: 16px;
   }
 }
