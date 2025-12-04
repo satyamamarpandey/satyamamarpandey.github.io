@@ -119,18 +119,96 @@ for (let i = 0; i < filterBtn.length; i++) {
 const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
+const formStatus = document.querySelector("[data-form-status]");
 
-// add event to all form input field
-for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
+// enable / disable button based on validity
+if (form && formInputs && formBtn) {
+  for (let i = 0; i < formInputs.length; i++) {
+    formInputs[i].addEventListener("input", function () {
+      if (form.checkValidity()) {
+        formBtn.removeAttribute("disabled");
+      } else {
+        formBtn.setAttribute("disabled", "");
+      }
+    });
+  }
+}
 
-    // check form validation
-    if (form && form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
+// helper to show status text
+function setFormStatus(message, type) {
+  if (!formStatus) return;
+  formStatus.textContent = message || "";
+  formStatus.style.color =
+    type === "success"
+      ? "#8ae68a"
+      : type === "error"
+      ? "#ff8a8a"
+      : "var(--light-gray)";
+}
+
+// submit handler (works locally + on production)
+if (form) {
+  form.addEventListener("submit", async (e) => {
+    const hostname = window.location.hostname;
+    const isLocal =
+      hostname === "localhost" ||
+      hostname === "127.0.0.1" ||
+      hostname === "";
+
+    // always handle in JS so we can show the message
+    e.preventDefault();
+
+    setFormStatus("Sending your message…", "info");
+    if (formBtn) formBtn.setAttribute("disabled", "");
+
+    if (isLocal) {
+      setTimeout(() => {
+        setFormStatus(
+          "Thanks for reaching out! This is a local test, so no email was sent.",
+          "success"
+        );
+        form.reset();
+        if (formBtn) formBtn.removeAttribute("disabled");
+
+        // Clear the message sooner (3 seconds)
+        setTimeout(() => setFormStatus("", "info"), 3000);
+      }, 300); // shorter delay before showing success
+      return;
     }
 
+
+    // Production: real POST to FormSubmit
+    try {
+      const formData = new FormData(form);
+
+      const response = await fetch(form.action, {
+        method: form.method || "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setFormStatus(
+          "Thanks for submitting! Your message has been sent successfully. I’ll get back to you soon.",
+          "success"
+        );
+        form.reset();
+      } else {
+        setFormStatus(
+          "Something went wrong while sending your message. Please email me directly at 7satyampandey@gmail.com.",
+          "error"
+        );
+      }
+    } catch (err) {
+      setFormStatus(
+        "Unable to reach the mail server right now. Please email me directly at 7satyampandey@gmail.com.",
+        "error"
+      );
+    } finally {
+      if (formBtn) formBtn.removeAttribute("disabled");
+    }
   });
 }
 
@@ -265,7 +343,7 @@ const chatbotForm = document.getElementById("chatbot-form");
 const chatbotInput = document.getElementById("chatbot-input");
 const chatbotMessages = document.getElementById("chatbot-messages");
 
-// ✅ your real resume link (direct download format)
+// your real resume link (direct download format)
 const RESUME_LINK =
   "https://drive.google.com/uc?export=download&id=1rvuMASPPef4KxV474H-LwMIt7C9_rHMj";
 
@@ -294,11 +372,7 @@ function addChatMessage(sender, text) {
 }
 
 /**
- * Very lightweight “AI-style” reply:
- * - Handles greetings / small talk
- * - Answers about you (background, skills, projects, contact)
- * - Shares resume when they mention it
- * - Has a friendly default reply for anything else
+ * Very lightweight “AI-style” reply
  */
 function getBotReply(message) {
   const m = message.toLowerCase().trim();
@@ -397,7 +471,7 @@ function getBotReply(message) {
     );
   }
 
-  // default: friendly “AI-style” answer
+  // default
   return (
     "Nice question! I’m a simple on-page bot, so I’m best at talking about Satyam — " +
     "his background, skills, projects, and resume.<br><br>" +
