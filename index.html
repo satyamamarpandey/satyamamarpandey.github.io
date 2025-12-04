@@ -487,7 +487,7 @@
 
           <!-- Centered Download Resume button -->
           <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
-            <a href="https://www.google.com" target="_blank"
+            <a href="https://drive.google.com/file/d/1rvuMASPPef4KxV474H-LwMIt7C9_rHMj/view?usp=sharing" target="_blank"
                class="form-btn"
                style="display: inline-flex; align-items: center; gap: 0.5rem;">
               <ion-icon name="download-outline"></ion-icon>
@@ -1282,42 +1282,46 @@
           <h3 class="h3 form-title">Contact Form</h3>
 
           <form action="https://formsubmit.co/7satyampandey@gmail.com" 
-                method="POST" 
-                class="form"
-                data-form>
+                  method="POST" 
+                  class="form"
+                  data-form>
 
-            <div class="input-wrapper">
-              <input type="text" 
-                    name="fullname" 
-                    class="form-input" 
-                    placeholder="Full name" 
-                    required>
-
-              <input type="email" 
-                    name="email" 
-                    class="form-input" 
-                    placeholder="Email address" 
-                    required>
-            </div>
-
-            <textarea name="message" 
+              <div class="input-wrapper">
+                <input type="text" 
+                      name="fullname" 
                       class="form-input" 
-                      placeholder="Your Message" 
-                      required></textarea>
+                      placeholder="Full name" 
+                      required>
 
-            <!-- Hidden FormSubmit controls -->
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="New message from your portfolio website">
+                <input type="email" 
+                      name="email" 
+                      class="form-input" 
+                      placeholder="Email address" 
+                      required>
+              </div>
 
-            <!-- Redirect after successful submission -->
-            <input type="hidden" name="_next" value="https://www.pandeysatyam.com">
+              <textarea name="message" 
+                        class="form-input" 
+                        placeholder="Your Message" 
+                        required></textarea>
 
-            <button class="form-btn" type="submit">
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
+              <!-- Hidden FormSubmit controls -->
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_subject" value="New message from your portfolio website">
 
-          </form>
+              <!-- ✅ Autoresponse: this goes to THEIR inbox with your resume link -->
+              <input type="hidden" name="_autoresponse"
+                    value="Hi! Thanks for reaching out via my portfolio site. Here is my resume download link: https://drive.google.com/uc?export=download&amp;id=1rvuMASPPef4KxV474H-LwMIt7C9_rHMj  If you have any questions or would like to talk further, feel free to reply to this email.  Best, Satyam">
+
+              <!-- Redirect after successful submission -->
+              <input type="hidden" name="_next" value="https://www.pandeysatyam.com">
+
+              <button class="form-btn" type="submit">
+                <ion-icon name="paper-plane"></ion-icon>
+                <span>Send Message</span>
+              </button>
+
+            </form>
 
           <p style="margin-top: 1rem; color: var(--white-2);">
             Prefer email? Reach me at
@@ -1334,16 +1338,65 @@
 
   </main>
 
+      <!-- Chatbot Widget -->
+      <div class="chatbot-container" id="chatbot">
+        <div class="chatbot-header">
+          <div class="chatbot-header-left">
+            <span class="chatbot-avatar">🤖</span>
+            <div>
+              <div class="chatbot-title">Satyam Bot</div>
+              <div class="chatbot-subtitle">Ask me about Satyam</div>
+            </div>
+          </div>
+          <button class="chatbot-close" id="chatbot-close" aria-label="Close chat">
+            ✕
+          </button>
+        </div>
 
+        <div class="chatbot-body" id="chatbot-messages">
+          <div class="chatbot-message bot">
+            Hi! I’m Satyam’s assistant. 👋<br />
+            You can ask things like:
+            <ul>
+              <li>“Tell me about your background”</li>
+              <li>“What skills do you have?”</li>
+              <li>“What projects have you done?”</li>
+              <li>Type <strong>resume</strong> to get a link, or I can
+                  help you send it to your email.</li>
+            </ul>
+          </div>
+        </div>
 
-  <!-- custom js link -->
-  <script src="./assets/js/script.js"></script>
+        <form class="chatbot-input-row" id="chatbot-form">
+          <input
+            type="text"
+            id="chatbot-input"
+            class="chatbot-input"
+            placeholder="Type your question..."
+            autocomplete="off"
+          />
+          <button type="submit" class="chatbot-send-btn" aria-label="Send message">
+            ➤
+          </button>
+        </form>
 
-  <!-- ionicon link -->
-  <script type="module"
-    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule
-    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+      </div>
+
+      <!-- Floating chatbot button -->
+      <button class="chatbot-toggle" id="chatbot-toggle" aria-label="Open chat">
+        <div class="chatbot-toggle-inner">
+          <span class="chatbot-toggle-icon">🤖</span>
+        </div>
+      </button>
+
+      <!-- custom js link -->
+      <script src="./assets/js/script.js"></script>
+
+      <!-- ionicon link -->
+      <script type="module"
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <footer class="footer">
       © 2025 Satyam Pandey. All rights reserved.

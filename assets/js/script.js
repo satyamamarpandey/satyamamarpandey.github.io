@@ -252,3 +252,183 @@ if ("IntersectionObserver" in window) {
     }
   });
 }
+
+
+/* ------------------------------
+ * Simple Satyam Chatbot
+ * ------------------------------ */
+
+const chatbotToggle = document.getElementById("chatbot-toggle");
+const chatbot = document.getElementById("chatbot");
+const chatbotClose = document.getElementById("chatbot-close");
+const chatbotForm = document.getElementById("chatbot-form");
+const chatbotInput = document.getElementById("chatbot-input");
+const chatbotMessages = document.getElementById("chatbot-messages");
+
+// ✅ your real resume link (direct download format)
+const RESUME_LINK =
+  "https://drive.google.com/uc?export=download&id=1rvuMASPPef4KxV474H-LwMIt7C9_rHMj";
+
+function toggleChat(open) {
+  if (!chatbot) return;
+  const isOpen = chatbot.classList.contains("open");
+  if (open === true || (!isOpen && open !== false)) {
+    chatbot.classList.add("open");
+  } else {
+    chatbot.classList.remove("open");
+  }
+}
+
+function addChatMessage(sender, text) {
+  if (!chatbotMessages) return;
+  const wrapper = document.createElement("div");
+  wrapper.className = "chatbot-message-row";
+
+  const msg = document.createElement("div");
+  msg.className = "chatbot-message " + (sender === "user" ? "user" : "bot");
+  msg.innerHTML = text;
+
+  wrapper.appendChild(msg);
+  chatbotMessages.appendChild(wrapper);
+  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+/**
+ * Very lightweight “AI-style” reply:
+ * - Handles greetings / small talk
+ * - Answers about you (background, skills, projects, contact)
+ * - Shares resume when they mention it
+ * - Has a friendly default reply for anything else
+ */
+function getBotReply(message) {
+  const m = message.toLowerCase().trim();
+
+  // greetings
+  if (/\b(hi|hey|hello|yo|hola|namaste)\b/.test(m)) {
+    return (
+      "Hey! 👋 I’m Satyam’s assistant.<br>" +
+      "Ask me anything about my background, skills, projects, or resume."
+    );
+  }
+
+  // small talk
+  if (m.includes("how are you")) {
+    return "I’m doing great and always ready to talk about Satyam. 😊 How can I help you?";
+  }
+
+  // thanks
+  if (/\b(thanks|thank you|appreciate)\b/.test(m)) {
+    return "You’re welcome! If you’d like to know more about my experience or projects, just ask. 🙌";
+  }
+
+  // resume
+  if (m.includes("resume") || m.includes("cv") || m.includes("profile")) {
+    return (
+      "Sure — here’s my resume download link:<br>" +
+      `<a href="${RESUME_LINK}" target="_blank" class="contact-link">Open Resume</a>`
+    );
+  }
+
+  // who / about
+  if (
+    m.includes("who are you") ||
+    m.includes("about yourself") ||
+    m.includes("about you") ||
+    m.includes("background") ||
+    m.includes("tell me about you")
+  ) {
+    return (
+      "I’m Satyam Pandey, a Senior Quantitative Analyst and data scientist. " +
+      "I work on quantitative modeling, data engineering, and ML solutions across " +
+      "energy, finance, and research."
+    );
+  }
+
+  // experience / career
+  if (
+    m.includes("experience") ||
+    m.includes("work history") ||
+    m.includes("career") ||
+    m.includes("where have you worked")
+  ) {
+    return (
+      "I’ve worked with Exelon (energy & utilities), PECO, the National Science Foundation " +
+      "(CIMSEPP pharma research), and ZS Associates — focusing on data science, " +
+      "quantitative modeling, and cloud analytics."
+    );
+  }
+
+  // skills / stack
+  if (
+    m.includes("skills") ||
+    m.includes("tech stack") ||
+    m.includes("tools") ||
+    m.includes("what do you use")
+  ) {
+    return (
+      "Core skills: Python, R, SQL, statistics, ML, NLP, time series, data engineering, " +
+      "Tableau / Power BI, and cloud platforms like AWS, Azure, and GCP."
+    );
+  }
+
+  // projects
+  if (m.includes("project") || m.includes("projects")) {
+    return (
+      "Some highlights:<br>" +
+      "• Affordability models and customer analytics for utilities at Exelon<br>" +
+      "• Mail-Stream (mass emailer) & Path Finder AI (resume analyzer)<br>" +
+      "• Pharma ML models with NSF CIMSEPP<br>" +
+      "• Several dashboards and research pipelines across energy, finance, and cyberpsychology."
+    );
+  }
+
+  // contact
+  if (
+    m.includes("contact") ||
+    m.includes("reach") ||
+    m.includes("email") ||
+    m.includes("connect")
+  ) {
+    return (
+      'You can reach me at ' +
+      '<a href="mailto:7satyampandey@gmail.com" class="contact-link">7satyampandey@gmail.com</a> ' +
+      "or via LinkedIn: " +
+      '<a href="https://www.linkedin.com/in/pandeysatyam" target="_blank" class="contact-link">LinkedIn Profile</a>.'
+    );
+  }
+
+  // default: friendly “AI-style” answer
+  return (
+    "Nice question! I’m a simple on-page bot, so I’m best at talking about Satyam — " +
+    "his background, skills, projects, and resume.<br><br>" +
+    "You can try asking things like:<br>" +
+    "• “What experience do you have?”<br>" +
+    "• “What skills do you know?”<br>" +
+    "• “What projects have you done?”<br>" +
+    "• “Share your resume.”"
+  );
+}
+
+// open / close handlers
+chatbotToggle &&
+  chatbotToggle.addEventListener("click", () => {
+    toggleChat();
+  });
+
+chatbotClose &&
+  chatbotClose.addEventListener("click", () => {
+    toggleChat(false);
+  });
+
+// submit question
+chatbotForm &&
+  chatbotForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!chatbotInput || !chatbotInput.value.trim()) return;
+    const text = chatbotInput.value.trim();
+    chatbotInput.value = "";
+
+    addChatMessage("user", text);
+    const reply = getBotReply(text);
+    setTimeout(() => addChatMessage("bot", reply), 250);
+  });
