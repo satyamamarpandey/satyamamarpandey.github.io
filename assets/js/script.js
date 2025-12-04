@@ -176,77 +176,50 @@ if (form) {
     });
   });
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  form.addEventListener("submit", (e) => {
+    // detect localhost
+    const isLocal =
+      location.hostname === "localhost" || location.hostname === "127.0.0.1";
 
+    // if form invalid, show normal browser errors
     if (!form.checkValidity()) {
+      e.preventDefault();
       form.reportValidity();
       return;
     }
 
-    if (!formBtn) return;
+    // ✅ REAL WEBSITE: let the normal HTML form submit happen
+    if (!isLocal) {
+      // optional: small status message before redirect
+      setFormStatus("Sending your message via secure mail service...", null);
+      // do NOT call preventDefault here → browser will POST to FormSubmit
+      return;
+    }
 
+    // 🧪 LOCALHOST ONLY: fake success, no network call
+    e.preventDefault();
+
+    if (!formBtn) return;
     const btnSpan = formBtn.querySelector("span");
     const originalBtnText = btnSpan ? btnSpan.textContent : "Send Message";
 
     formBtn.setAttribute("disabled", "");
     if (btnSpan) btnSpan.textContent = "Sending...";
-    setFormStatus("Sending your message...", null);
+    setFormStatus("Sending your message (local test)...", null);
 
-    const isLocal =
-      location.hostname === "localhost" ||
-      location.hostname === "127.0.0.1";
-
-    const formData = new FormData(form);
-
-    // Localhost: fake success for testing
-    if (isLocal) {
-      setTimeout(() => {
-        setFormStatus(
-          "Thanks for submitting! Your message has been recorded (local test).",
-          "success"
-        );
-        form.reset();
-        formBtn.removeAttribute("disabled");
-        if (btnSpan) btnSpan.textContent = originalBtnText;
-        setTimeout(() => setFormStatus("", null), 2500);
-      }, 300);
-      return;
-    }
-
-    // Live: real POST to FormSubmit
-    try {
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
-      });
-
-      if (response.ok) {
-        setFormStatus(
-          "Thanks for submitting! Your message has been sent — I’ll get back to you soon.",
-          "success"
-        );
-        form.reset();
-      } else {
-        setFormStatus(
-          "Something went wrong while sending your message. Please try again or email me directly.",
-          "error"
-        );
-      }
-    } catch (err) {
-      console.error("Form submit error:", err);
+    setTimeout(() => {
       setFormStatus(
-        "Network error. Please try again or email me directly.",
-        "error"
+        "Thanks for submitting! Your message has been recorded (local test).",
+        "success"
       );
-    } finally {
+      form.reset();
       formBtn.removeAttribute("disabled");
       if (btnSpan) btnSpan.textContent = originalBtnText;
-      setTimeout(() => setFormStatus("", null), 3000);
-    }
+      setTimeout(() => setFormStatus("", null), 2000);
+    }, 300);
   });
 }
+
 
 /* ---------------------------------------
  * Dynamic rotating role title
