@@ -2239,14 +2239,15 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .form-status {
   margin-top: 0.75rem;
-  font-size: 0.9rem;
-  min-height: 1.2em;        /* keeps layout stable even when empty */
+  font-size: 0.8rem;
+  color: var(--light-gray-70);
 }
 
 .form-status.success {
-  color: #4ade80;           /* soft green */
+  color: #7dd57d;
 }
 
 .form-status.error {
-  color: #f97373;           /* soft red */
+  color: #ff6b6b;
 }
+

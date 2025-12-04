@@ -148,26 +148,18 @@ if (filterBtn.length) {
  * CONTACT FORM: validation + AJAX submit
  * --------------------------------------- */
 
+// contact form variables
 const form = document.querySelector("[data-form]");
-const formInputs = form ? form.querySelectorAll("[data-form-input]") : [];
+const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
-const formStatus = document.getElementById("form-status");
+const formStatus = document.querySelector("[data-form-status]");
 
-function setFormStatus(message, type) {
-  if (!formStatus) return;
-  formStatus.textContent = message || "";
-  formStatus.classList.remove("success", "error");
-  if (type) formStatus.classList.add(type);
-}
+// enable/disable button based on validity (optional)
+if (form && formInputs && formBtn) {
+  formBtn.setAttribute("disabled", "");
 
-if (form) {
-  // button disabled initially
-  if (formBtn) formBtn.setAttribute("disabled", "");
-
-  // enable/disable based on validity
   formInputs.forEach((input) => {
     input.addEventListener("input", () => {
-      if (!formBtn) return;
       if (form.checkValidity()) {
         formBtn.removeAttribute("disabled");
       } else {
@@ -175,51 +167,72 @@ if (form) {
       }
     });
   });
+}
 
-  form.addEventListener("submit", (e) => {
-    // detect localhost
-    const isLocal =
-      location.hostname === "localhost" || location.hostname === "127.0.0.1";
+// handle submit via Web3Forms
+if (form) {
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-    // if form invalid, show normal browser errors
     if (!form.checkValidity()) {
-      e.preventDefault();
       form.reportValidity();
       return;
     }
 
-    // ✅ REAL WEBSITE: let the normal HTML form submit happen
-    if (!isLocal) {
-      // optional: small status message before redirect
-      setFormStatus("Sending your message via secure mail service...", null);
-      // do NOT call preventDefault here → browser will POST to FormSubmit
-      return;
+    if (formBtn) {
+      formBtn.setAttribute("disabled", "");
+      formBtn.classList.add("is-loading");
+      const span = formBtn.querySelector("span");
+      if (span) span.textContent = "Sending...";
     }
 
-    // 🧪 LOCALHOST ONLY: fake success, no network call
-    e.preventDefault();
+    if (formStatus) {
+      formStatus.textContent = "Sending your message...";
+      formStatus.classList.remove("success", "error");
+    }
 
-    if (!formBtn) return;
-    const btnSpan = formBtn.querySelector("span");
-    const originalBtnText = btnSpan ? btnSpan.textContent : "Send Message";
+    const formData = new FormData(form);
 
-    formBtn.setAttribute("disabled", "");
-    if (btnSpan) btnSpan.textContent = "Sending...";
-    setFormStatus("Sending your message (local test)...", null);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
 
-    setTimeout(() => {
-      setFormStatus(
-        "Thanks for submitting! Your message has been recorded (local test).",
-        "success"
-      );
-      form.reset();
-      formBtn.removeAttribute("disabled");
-      if (btnSpan) btnSpan.textContent = originalBtnText;
-      setTimeout(() => setFormStatus("", null), 2000);
-    }, 300);
+      const result = await response.json();
+
+      if (result.success) {
+        if (formStatus) {
+          formStatus.textContent =
+            "Thanks for reaching out! I’ll get back to you soon.";
+          formStatus.classList.add("success");
+        }
+        form.reset();
+      } else {
+        console.error(result);
+        if (formStatus) {
+          formStatus.textContent =
+            "Something went wrong. Please email me directly at 7satyampandey@gmail.com.";
+          formStatus.classList.add("error");
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      if (formStatus) {
+        formStatus.textContent =
+          "Unable to send right now. Please email me directly at 7satyampandey@gmail.com.";
+        formStatus.classList.add("error");
+      }
+    } finally {
+      if (formBtn) {
+        formBtn.removeAttribute("disabled");
+        formBtn.classList.remove("is-loading");
+        const span = formBtn.querySelector("span");
+        if (span) span.textContent = "Send Message";
+      }
+    }
   });
 }
-
 
 /* ---------------------------------------
  * Dynamic rotating role title

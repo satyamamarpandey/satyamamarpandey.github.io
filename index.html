@@ -1283,53 +1283,56 @@
           <h3 class="h3 form-title">Contact Form</h3>
 
           <!-- UPDATED FORM -->
-          <form action="https://formsubmit.co/7satyampandey@gmail.com"
-                method="POST"
-                class="form"
-                data-form>
+          <form
+              id="contact-form"
+              class="form"
+              data-form
+            >
+              <!-- Web3Forms access key -->
+              <input type="hidden" name="access_key" value="ff6e6046-b037-49d7-ab64-026c2b32a445">
 
-            <div class="input-wrapper">
-              <input type="text"
-                     name="fullname"
-                     class="form-input"
-                     placeholder="Full name"
-                     required
-                     data-form-input>
+              <!-- Optional: email subject -->
+              <input type="hidden" name="subject" value="New message from your portfolio website">
 
-              <input type="email"
-                     name="email"
-                     class="form-input"
-                     placeholder="Email address"
-                     required
-                     data-form-input>
-            </div>
+              <!-- Honeypot (spam protection) -->
+              <input type="checkbox" name="botcheck" style="display:none !important" tabindex="-1" autocomplete="off">
 
-            <textarea name="message"
-                      class="form-input"
-                      placeholder="Your Message"
-                      required
-                      data-form-input></textarea>
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  name="fullname"
+                  class="form-input"
+                  placeholder="Full name"
+                  required
+                  data-form-input
+                >
 
-            <!-- Hidden FormSubmit controls -->
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="New message from your portfolio website">
+                <input
+                  type="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="Email address"
+                  required
+                  data-form-input
+                >
+              </div>
 
-            <!-- Autoresponse: goes to sender -->
-            <input type="hidden" name="_autoresponse"
-                   value="Hi! Thanks for reaching out via my portfolio site. Here is my resume download link: https://drive.google.com/uc?export=download&amp;id=1rvuMASPPef4KxV474H-LwMIt7C9_rHMj  If you have any questions or would like to talk further, feel free to reply to this email.  Best, Satyam">
+              <textarea
+                name="message"
+                class="form-input"
+                placeholder="Your Message"
+                required
+                data-form-input
+              ></textarea>
 
-            <!-- _next kept for compatibility (ignored by AJAX) -->
-            <input type="hidden" name="_next" value="https://www.pandeysatyam.com/?sent=1">
+              <button class="form-btn" type="submit" data-form-btn>
+                <ion-icon name="paper-plane"></ion-icon>
+                <span>Send Message</span>
+              </button>
 
-            <button class="form-btn" type="submit" data-form-btn disabled>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
-
-            <!-- Status text -->
-            <p id="form-status" class="form-status" aria-live="polite"></p>
-
-          </form>
+              <!-- Status text goes here -->
+              <p class="form-status" data-form-status></p>
+            </form>
 
           <p style="margin-top: 1rem; color: var(--white-2);">
             Prefer email? Reach me at
