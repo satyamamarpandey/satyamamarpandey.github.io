@@ -1714,6 +1714,21 @@ textarea.form-input::-webkit-resizer { display: none; }
     width: max-content;
     margin-left: auto;
   }
+
+  .form-status {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--light-gray-70);
+    }
+
+    .form-status.success {
+      color: #7dd87d;
+    }
+
+    .form-status.error {
+      color: #ff6b6b;
+    }
+
   
 }
 

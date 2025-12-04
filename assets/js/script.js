@@ -117,12 +117,23 @@ for (let i = 0; i < filterBtn.length; i++) {
 
 // contact form variables
 const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
-const formStatus = document.querySelector("[data-form-status]");
+const formStatus = document.getElementById("form-status");
 
-// enable / disable button based on validity
-if (form && formInputs && formBtn) {
+// detect localhost
+const isLocal =
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1";
+
+function setFormStatus(message, type = "info") {
+  if (!formStatus) return;
+  formStatus.textContent = message;
+  formStatus.className = "form-status " + type;
+}
+
+// enable/disable button based on validity (optional, works if you add data-form-input)
+const formInputs = document.querySelectorAll("[data-form-input]");
+if (form && formBtn && formInputs.length) {
   for (let i = 0; i < formInputs.length; i++) {
     formInputs[i].addEventListener("input", function () {
       if (form.checkValidity()) {
@@ -134,83 +145,37 @@ if (form && formInputs && formBtn) {
   }
 }
 
-// helper to show status text
-function setFormStatus(message, type) {
-  if (!formStatus) return;
-  formStatus.textContent = message || "";
-  formStatus.style.color =
-    type === "success"
-      ? "#8ae68a"
-      : type === "error"
-      ? "#ff8a8a"
-      : "var(--light-gray)";
-}
-
-// submit handler (works locally + on production)
 if (form) {
-  form.addEventListener("submit", async (e) => {
-    const hostname = window.location.hostname;
-    const isLocal =
-      hostname === "localhost" ||
-      hostname === "127.0.0.1" ||
-      hostname === "";
+  if (isLocal) {
+    // ✅ LOCALHOST: fake a success, no real network request
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    // always handle in JS so we can show the message
-    e.preventDefault();
+      if (formBtn) formBtn.setAttribute("disabled", "true");
+      setFormStatus("Sending your message (local test only)...", "info");
 
-    setFormStatus("Sending your message…", "info");
-    if (formBtn) formBtn.setAttribute("disabled", "");
-
-    if (isLocal) {
       setTimeout(() => {
         setFormStatus(
-          "Thanks for reaching out! This is a local test, so no email was sent.",
+          "Thanks for submitting! Your message will be emailed to Satyam.",
           "success"
         );
         form.reset();
         if (formBtn) formBtn.removeAttribute("disabled");
-
-        // Clear the message sooner (3 seconds)
-        setTimeout(() => setFormStatus("", "info"), 3000);
-      }, 300); // shorter delay before showing success
-      return;
-    }
-
-
-    // Production: real POST to FormSubmit
-    try {
-      const formData = new FormData(form);
-
-      const response = await fetch(form.action, {
-        method: form.method || "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      if (response.ok) {
-        setFormStatus(
-          "Thanks for submitting! Your message has been sent successfully. I’ll get back to you soon.",
-          "success"
-        );
-        form.reset();
-      } else {
-        setFormStatus(
-          "Something went wrong while sending your message. Please email me directly at 7satyampandey@gmail.com.",
-          "error"
-        );
-      }
-    } catch (err) {
+      }, 400); // shorter timeout
+    });
+  } else {
+    // 🌐 LIVE SITE: let the browser POST normally to FormSubmit
+    // If redirected back with ?sent=1, show success message.
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("sent") === "1") {
       setFormStatus(
-        "Unable to reach the mail server right now. Please email me directly at 7satyampandey@gmail.com.",
-        "error"
+        "Thanks for submitting! Your message has been sent — I’ll get back to you soon.",
+        "success"
       );
-    } finally {
-      if (formBtn) formBtn.removeAttribute("disabled");
     }
-  });
+  }
 }
+
 
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");

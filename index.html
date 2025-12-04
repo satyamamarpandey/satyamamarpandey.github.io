@@ -1282,75 +1282,50 @@
           <h3 class="h3 form-title">Contact Form</h3>
 
           <!-- UPDATED FORM -->
-          <form
-            action="https://formsubmit.co/7satyampandey@gmail.com"
-            method="POST"
-            class="form"
-            data-form
-          >
+          <form action="https://formsubmit.co/7satyampandey@gmail.com" 
+                  method="POST" 
+                  class="form"
+                  data-form>
 
-            <div class="input-wrapper">
-              <input
-                type="text"
-                name="fullname"
-                class="form-input"
-                placeholder="Full name"
-                required
-                data-form-input
-              >
+              <div class="input-wrapper">
+                <input type="text"
+                      name="fullname"
+                      class="form-input"
+                      placeholder="Full name"
+                      required>
 
-              <input
-                type="email"
-                name="email"
-                class="form-input"
-                placeholder="Email address"
-                required
-                data-form-input
-              >
-            </div>
+                <input type="email"
+                      name="email"
+                      class="form-input"
+                      placeholder="Email address"
+                      required>
+              </div>
 
-            <textarea
-              name="message"
-              class="form-input"
-              placeholder="Your Message"
-              required
-              data-form-input
-            ></textarea>
+              <textarea name="message"
+                        class="form-input"
+                        placeholder="Your Message"
+                        required></textarea>
 
-            <!-- Hidden FormSubmit controls -->
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="New message from your portfolio website">
+              <!-- Hidden FormSubmit controls -->
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_subject" value="New message from your portfolio website">
 
-            <!-- Autoresponse: goes to sender's inbox -->
-            <input
-              type="hidden"
-              name="_autoresponse"
-              value="Hi! Thanks for reaching out via my portfolio site. Here is my resume download link: https://drive.google.com/uc?export=download&amp;id=1rvuMASPPef4KxV474H-LwMIt7C9_rHMj  If you have any questions or would like to talk further, feel free to reply to this email.  Best, Satyam"
-            >
+              <!-- Autoresponse to the sender -->
+              <input type="hidden" name="_autoresponse"
+                    value="Hi! Thanks for reaching out via my portfolio site. Here is my resume download link: https://drive.google.com/uc?export=download&amp;id=1rvuMASPPef4KxV474H-LwMIt7C9_rHMj  If you have any questions or would like to talk further, feel free to reply to this email.  Best, Satyam">
 
-            <!-- Optional: keep _next for non-AJAX fallback -->
-            <input type="hidden" name="_next" value="https://www.pandeysatyam.com">
+              <!-- Redirect back to your site with flag ?sent=1 -->
+              <input type="hidden" name="_next" value="https://www.pandeysatyam.com/?sent=1">
 
-            <button class="form-btn" type="submit" data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
+              <button class="form-btn" type="submit" data-form-btn>
+                <ion-icon name="paper-plane"></ion-icon>
+                <span>Send Message</span>
+              </button>
 
-            <!-- Status message shown by JS -->
-            <p
-              class="form-status"
-              data-form-status
-              style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--light-gray);"
-            ></p>
+            </form>
 
-          </form>
-
-          <p style="margin-top: 1rem; color: var(--white-2);">
-            Prefer email? Reach me at
-            <a href="mailto:7satyampandey@gmail.com" class="contact-link" style="font-weight: 600;">
-              7satyampandey@gmail.com
-            </a>
-          </p>
+            <!-- Status message under the form -->
+            <p id="form-status" class="form-status"></p>
 
         </section>
 
