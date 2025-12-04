@@ -1955,7 +1955,13 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .timeline-text { max-width: 700px; }
 
-  /*-----------------------------------*\
+}  /* end @media (min-width: 1250px) */
+
+
+
+
+
+/*-----------------------------------*\
   #CHATBOT WIDGET
 \*-----------------------------------*/
 
@@ -2167,8 +2173,10 @@ textarea.form-input::-webkit-resizer { display: none; }
   justify-content: center;
 }
 
+
+
 /*-----------------------------------*\
-  #MOBILE TWEAKS
+  #MOBILE TWEAKS FOR CHATBOT
 \*-----------------------------------*/
 
 /* Tablets & down */
@@ -2224,6 +2232,3 @@ textarea.form-input::-webkit-resizer { display: none; }
     border-radius: 16px;
   }
 }
-
-}
-  
