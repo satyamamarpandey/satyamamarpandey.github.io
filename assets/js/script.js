@@ -115,87 +115,115 @@ for (let i = 0; i < filterBtn.length; i++) {
 
 }
 
-// contact form variables
+/* ---------------------------------------
+ * CONTACT FORM: validation + AJAX submit
+ * --------------------------------------- */
+
 const form = document.querySelector("[data-form]");
+const formInputs = form ? form.querySelectorAll("[data-form-input]") : [];
 const formBtn = document.querySelector("[data-form-btn]");
 const formStatus = document.getElementById("form-status");
 
-// detect localhost
-const isLocal =
-  window.location.hostname === "localhost" ||
-  window.location.hostname === "127.0.0.1";
-
-function setFormStatus(message, type = "info") {
+function setFormStatus(message, type) {
   if (!formStatus) return;
-  formStatus.textContent = message;
-  formStatus.className = "form-status " + type;
+  formStatus.textContent = message || "";
+  formStatus.classList.remove("success", "error");
+  if (type) formStatus.classList.add(type);
 }
 
-// enable/disable button based on validity (optional, works if you add data-form-input)
-const formInputs = document.querySelectorAll("[data-form-input]");
-if (form && formBtn && formInputs.length) {
-  for (let i = 0; i < formInputs.length; i++) {
-    formInputs[i].addEventListener("input", function () {
+if (form) {
+  // disable button initially
+  if (formBtn) {
+    formBtn.setAttribute("disabled", "");
+  }
+
+  // enable/disable button based on validity
+  formInputs.forEach((input) => {
+    input.addEventListener("input", () => {
+      if (!formBtn) return;
       if (form.checkValidity()) {
         formBtn.removeAttribute("disabled");
       } else {
         formBtn.setAttribute("disabled", "");
       }
     });
-  }
-}
+  });
 
-if (form) {
-  if (isLocal) {
-    // ✅ LOCALHOST: fake a success, no real network request
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-      if (formBtn) formBtn.setAttribute("disabled", "true");
-      setFormStatus("Sending your message (local test only)...", "info");
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
 
+    if (!formBtn) return;
+
+    const btnSpan = formBtn.querySelector("span");
+    const originalBtnText = btnSpan ? btnSpan.textContent : "Send Message";
+
+    formBtn.setAttribute("disabled", "");
+    if (btnSpan) btnSpan.textContent = "Sending...";
+    setFormStatus("Sending your message...", null);
+
+    const isLocal =
+      location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1";
+
+    const formData = new FormData(form);
+
+    // Localhost: fake success for testing
+    if (isLocal) {
       setTimeout(() => {
         setFormStatus(
-          "Thanks for submitting! Your message will be emailed to Satyam.",
+          "Thanks for submitting! Your message has been recorded (local test).",
           "success"
         );
         form.reset();
-        if (formBtn) formBtn.removeAttribute("disabled");
-      }, 400); // shorter timeout
-    });
-  } else {
-    // 🌐 LIVE SITE: let the browser POST normally to FormSubmit
-    // If redirected back with ?sent=1, show success message.
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("sent") === "1") {
-      setFormStatus(
-        "Thanks for submitting! Your message has been sent — I’ll get back to you soon.",
-        "success"
-      );
+        formBtn.removeAttribute("disabled");
+        if (btnSpan) btnSpan.textContent = originalBtnText;
+
+        // hide message after ~2.5s
+        setTimeout(() => setFormStatus("", null), 2500);
+      }, 300);
+      return;
     }
-  }
-}
 
+    // Live site: real POST to FormSubmit
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
-// page navigation variables
-const navigationLinks = document.querySelectorAll("[data-nav-link]");
-const pages = document.querySelectorAll("[data-page]");
-
-// add event to all nav link
-for (let i = 0; i < navigationLinks.length; i++) {
-  navigationLinks[i].addEventListener("click", function () {
-
-    for (let j = 0; j < pages.length; j++) {
-      if (this.innerHTML.toLowerCase() === pages[j].dataset.page) {
-        pages[j].classList.add("active");
-        navigationLinks[j].classList.add("active");
-        window.scrollTo({ top: 0, behavior: "smooth" });
+      if (response.ok) {
+        setFormStatus(
+          "Thanks for submitting! Your message has been sent — I’ll get back to you soon.",
+          "success"
+        );
+        form.reset();
       } else {
-        pages[j].classList.remove("active");
-        navigationLinks[j].classList.remove("active");
+        setFormStatus(
+          "Something went wrong while sending your message. Please try again or email me directly.",
+          "error"
+        );
       }
-    }
+    } catch (err) {
+      console.error("Form submit error:", err);
+      setFormStatus(
+        "Network error. Please try again or email me directly.",
+        "error"
+      );
+    } finally {
+      formBtn.removeAttribute("disabled");
+      if (btnSpan) btnSpan.textContent = originalBtnText;
 
+      // hide message after ~3s
+      setTimeout(() => setFormStatus("", null), 3000);
+    }
   });
 }
 
@@ -308,7 +336,7 @@ const chatbotForm = document.getElementById("chatbot-form");
 const chatbotInput = document.getElementById("chatbot-input");
 const chatbotMessages = document.getElementById("chatbot-messages");
 
-// your real resume link (direct download format)
+// ✅ your real resume link (direct download format)
 const RESUME_LINK =
   "https://drive.google.com/uc?export=download&id=1rvuMASPPef4KxV474H-LwMIt7C9_rHMj";
 
@@ -337,7 +365,11 @@ function addChatMessage(sender, text) {
 }
 
 /**
- * Very lightweight “AI-style” reply
+ * Very lightweight “AI-style” reply:
+ * - Handles greetings / small talk
+ * - Answers about you (background, skills, projects, contact)
+ * - Shares resume when they mention it
+ * - Has a friendly default reply for anything else
  */
 function getBotReply(message) {
   const m = message.toLowerCase().trim();
@@ -436,7 +468,7 @@ function getBotReply(message) {
     );
   }
 
-  // default
+  // default: friendly “AI-style” answer
   return (
     "Nice question! I’m a simple on-page bot, so I’m best at talking about Satyam — " +
     "his background, skills, projects, and resume.<br><br>" +

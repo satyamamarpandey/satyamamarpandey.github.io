@@ -1714,21 +1714,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     width: max-content;
     margin-left: auto;
   }
-
-  .form-status {
-      margin-top: 0.75rem;
-      font-size: 0.8rem;
-      color: var(--light-gray-70);
-    }
-
-    .form-status.success {
-      color: #7dd87d;
-    }
-
-    .form-status.error {
-      color: #ff6b6b;
-    }
-
   
 }
 
@@ -2246,4 +2231,22 @@ textarea.form-input::-webkit-resizer { display: none; }
     bottom: calc(124px + env(safe-area-inset-bottom, 0px));
     border-radius: 16px;
   }
+}
+
+/*-----------------------------------*\
+  #CONTACT FORM STATUS TEXT
+\*-----------------------------------*/
+
+.form-status {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  min-height: 1.2em;        /* keeps layout stable even when empty */
+}
+
+.form-status.success {
+  color: #4ade80;           /* soft green */
+}
+
+.form-status.error {
+  color: #f97373;           /* soft red */
 }

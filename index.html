@@ -485,9 +485,10 @@
         <header>
           <h2 class="h2 article-title">Resume</h2>
 
-          <!-- Centered Download Resume button -->
-          <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
-            <a href="https://drive.google.com/file/d/1rvuMASPPef4KxV474H-LwMIt7C9_rHMj/view?usp=sharing" target="_blank"
+          <!-- Centered Download Resume button with extra space below -->
+          <div style="margin: 1.5rem auto 2.5rem; display: flex; justify-content: center;">
+            <a href="https://drive.google.com/uc?export=download&amp;id=1rvuMASPPef4KxV474H-LwMIt7C9_rHMj"
+               target="_blank"
                class="form-btn"
                style="display: inline-flex; align-items: center; gap: 0.5rem;">
               <ion-icon name="download-outline"></ion-icon>
@@ -1282,50 +1283,60 @@
           <h3 class="h3 form-title">Contact Form</h3>
 
           <!-- UPDATED FORM -->
-          <form action="https://formsubmit.co/7satyampandey@gmail.com" 
-                  method="POST" 
-                  class="form"
-                  data-form>
+          <form action="https://formsubmit.co/7satyampandey@gmail.com"
+                method="POST"
+                class="form"
+                data-form>
 
-              <div class="input-wrapper">
-                <input type="text"
-                      name="fullname"
+            <div class="input-wrapper">
+              <input type="text"
+                     name="fullname"
+                     class="form-input"
+                     placeholder="Full name"
+                     required
+                     data-form-input>
+
+              <input type="email"
+                     name="email"
+                     class="form-input"
+                     placeholder="Email address"
+                     required
+                     data-form-input>
+            </div>
+
+            <textarea name="message"
                       class="form-input"
-                      placeholder="Full name"
-                      required>
+                      placeholder="Your Message"
+                      required
+                      data-form-input></textarea>
 
-                <input type="email"
-                      name="email"
-                      class="form-input"
-                      placeholder="Email address"
-                      required>
-              </div>
+            <!-- Hidden FormSubmit controls -->
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New message from your portfolio website">
 
-              <textarea name="message"
-                        class="form-input"
-                        placeholder="Your Message"
-                        required></textarea>
+            <!-- Autoresponse: goes to sender -->
+            <input type="hidden" name="_autoresponse"
+                   value="Hi! Thanks for reaching out via my portfolio site. Here is my resume download link: https://drive.google.com/uc?export=download&amp;id=1rvuMASPPef4KxV474H-LwMIt7C9_rHMj  If you have any questions or would like to talk further, feel free to reply to this email.  Best, Satyam">
 
-              <!-- Hidden FormSubmit controls -->
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_subject" value="New message from your portfolio website">
+            <!-- _next kept for compatibility (ignored by AJAX) -->
+            <input type="hidden" name="_next" value="https://www.pandeysatyam.com/?sent=1">
 
-              <!-- Autoresponse to the sender -->
-              <input type="hidden" name="_autoresponse"
-                    value="Hi! Thanks for reaching out via my portfolio site. Here is my resume download link: https://drive.google.com/uc?export=download&amp;id=1rvuMASPPef4KxV474H-LwMIt7C9_rHMj  If you have any questions or would like to talk further, feel free to reply to this email.  Best, Satyam">
+            <button class="form-btn" type="submit" data-form-btn disabled>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
 
-              <!-- Redirect back to your site with flag ?sent=1 -->
-              <input type="hidden" name="_next" value="https://www.pandeysatyam.com/?sent=1">
+            <!-- Status text -->
+            <p id="form-status" class="form-status" aria-live="polite"></p>
 
-              <button class="form-btn" type="submit" data-form-btn>
-                <ion-icon name="paper-plane"></ion-icon>
-                <span>Send Message</span>
-              </button>
+          </form>
 
-            </form>
-
-            <!-- Status message under the form -->
-            <p id="form-status" class="form-status"></p>
+          <p style="margin-top: 1rem; color: var(--white-2);">
+            Prefer email? Reach me at
+            <a href="mailto:7satyampandey@gmail.com" class="contact-link" style="font-weight: 600;">
+              7satyampandey@gmail.com
+            </a>
+          </p>
 
         </section>
 
