@@ -1,44 +1,104 @@
-# vCard - Personal portfolio
+# **Satyam Pandey – Personal Portfolio**
 
-![GitHub repo size](https://img.shields.io/github/repo-size/codewithsadee/vcard-personal-portfolio)
-![GitHub stars](https://img.shields.io/github/stars/codewithsadee/vcard-personal-portfolio?style=social)
-![GitHub forks](https://img.shields.io/github/forks/codewithsadee/vcard-personal-portfolio?style=social)
-[![Twitter Follow](https://img.shields.io/twitter/follow/codewithsadee_?style=social)](https://twitter.com/intent/follow?screen_name=codewithsadee_)
-[![YouTube Video Views](https://img.shields.io/youtube/views/SoxmIlgf2zM?style=social)](https://youtu.be/SoxmIlgf2zM)
+Welcome to the source code of my **interactive personal portfolio website**, built to showcase my work in **Quantitative Engineering, Data Science, Machine Learning, and Software Development**.
 
-vCard is a fully responsive personal portfolio website, responsive for all devices, built using HTML, CSS, and JavaScript.
+The portfolio is fully responsive, minimalistic, and includes a custom-built **AI-style chatbot** that answers questions about my background, skills, and projects.
 
-## Demo
+---
 
-![vCard Desktop Demo](./website-demo-image/desktop.png "Desktop Demo")
-![vCard Mobile Demo](./website-demo-image/mobile.png "Mobile Demo")
+## 🔗 **Live Website**
 
-## Prerequisites
+👉 **[https://satyamamarpandey.github.io](https://satyamamarpandey.github.io)**
 
-Before you begin, ensure you have met the following requirements:
+---
 
-* [Git](https://git-scm.com/downloads "Download Git") must be installed on your operating system.
+## 📸 **Preview**
 
-## Installing vCard
+### **Desktop**
 
-To install **vCard**, follow these steps:
+![Desktop Demo](./website-demo-image/desktop.png)
 
-Linux and macOS:
+### **Mobile**
 
-```bash
-sudo git clone https://github.com/codewithsadee/vcard-personal-portfolio.git
+![Mobile Demo](./website-demo-image/mobile.png)
+
+---
+
+## ✨ **Features**
+
+* Modern, responsive dark-theme UI
+* Smooth transitions & reveal-on-scroll animations
+* Filterable Project Portfolio
+* Dynamic rotating role title
+* Custom **Satyam Bot** – a lightweight chatbot that:
+
+  * Answers questions about my background
+  * Provides resume links
+  * Offers interactive responses
+* Clean typography and minimal design
+* Optimized for GitHub Pages deployment
+
+---
+
+## 🛠️ **Tech Stack**
+
+| Category   | Tools                                                    |
+| ---------- | -------------------------------------------------------- |
+| Frontend   | HTML5, CSS3, JavaScript                                  |
+| Design     | Custom CSS, SVG icons, gradients                         |
+| Deployment | GitHub Pages                                             |
+| Extras     | Custom Chatbot JS, Scroll Animations, Responsive Layouts |
+
+---
+
+## 📂 **Project Structure**
+
+```
+/
+├── assets/
+│   ├── css/               # Stylesheets
+│   ├── images/            # Icons, project thumbnails
+│   └── js/                # Main JS + chatbot script
+│
+├── index.html             # Main portfolio page
+└── README.md              # Documentation
 ```
 
-Windows:
+---
+
+## 🚀 **Running Locally**
+
+Make sure Git is installed.
+
+### Clone the repo
 
 ```bash
-git clone https://github.com/codewithsadee/vcard-personal-portfolio.git
+git clone https://github.com/satyamamarpandey/satyamamarpandey.github.io
+cd satyamamarpandey.github.io
 ```
 
-## Contact
+### Open the project
 
-If you want to contact me you can reach me at [Twitter](https://www.x.com/codewithsadee_).
+Simply open `index.html` in your browser.
 
-## License
+---
 
-MIT
+## 🎯 **Sections Included**
+
+* About Me
+* Experience
+* Projects (Quant · Finance · Data Science · Software)
+* Skills
+* Education
+* Contact
+* Satyam Bot (AI Chat Widget)
+
+---
+
+## 📬 **Contact**
+
+Feel free to reach out:
+
+📧 Email: **[7satyampandey@gmail.com](mailto:7satyampandey@gmail.com)**
+💼 LinkedIn: [https://www.linkedin.com/in/pandeysatyam](https://www.linkedin.com/in/pandeysatyam)
+🌐 Portfolio: [https://satyamamarpandey.github.io](https://satyamamarpandey.github.io)
