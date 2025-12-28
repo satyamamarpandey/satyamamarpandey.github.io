@@ -1,4 +1,4 @@
-# **Satyam Pandey – Personal Portfolio**
+# **Satyam Pandey - Personal Portfolio**
 
 Welcome to the source code of my **interactive personal portfolio website**, built to showcase my work in **Quantitative Engineering, Data Science, Machine Learning, and Software Development**.
 
