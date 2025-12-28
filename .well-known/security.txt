@@ -1,0 +1,3 @@
+Contact: mailto:7satyampandey@gmail.com
+Preferred-Languages: en
+Canonical: https://pandeysatyam.com/.well-known/security.txt

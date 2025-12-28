@@ -1,0 +1,9 @@
+/* TEAM */
+Name: Satyam Pandey
+Role: Quantitative Analyst & Data Scientist
+Site: https://pandeysatyam.com/
+
+/* SITE */
+Standards: HTML5, CSS3
+Components: Open Graph, Twitter Cards, JSON-LD (Schema.org), PWA Manifest
+Last updated: 2025-12-27
