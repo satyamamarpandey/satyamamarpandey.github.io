@@ -77,32 +77,141 @@
   <!-- (Optional) Sitemap hint -->
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 
-  <!-- Structured Data (VERY IMPORTANT for name searches) -->
+  <!-- Structured Data: Personal Brand / Knowledge Graph -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Satyam Pandey",
-    "alternateName": ["Pandey Satyam", "Satyam", "Pandey"],
-    "url": "https://pandeysatyam.com/",
-    "image": "https://pandeysatyam.com/assets/images/og-cover.png",
-    "jobTitle": ["Quantitative Analyst", "Data Scientist"],
-    "sameAs": [
-      "https://www.linkedin.com/in/YOUR_LINKEDIN/",
-      "https://github.com/YOUR_GITHUB/"
-    ],
-    "knowsAbout": [
-      "Quantitative Finance",
-      "Machine Learning",
-      "Data Science",
-      "Data Engineering",
-      "Python",
-      "SQL",
-      "Statistics",
-      "Time Series"
-    ]
-  }
-  </script>
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://pandeysatyam.com/#website",
+          "url": "https://pandeysatyam.com/",
+          "name": "Satyam Pandey",
+          "publisher": { "@id": "https://pandeysatyam.com/#person" },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "Person",
+          "@id": "https://pandeysatyam.com/#person",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://pandeysatyam.com/"
+          },
+          "name": "Satyam Pandey",
+          "givenName": "Satyam",
+          "familyName": "Pandey",
+          "alternateName": [
+            "Pandey Satyam",
+            "Satyam",
+            "Pandey",
+            "Satyam P",
+            "Satyam P."
+          ],
+          "url": "https://pandeysatyam.com/",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://pandeysatyam.com/#ogimage",
+            "url": "https://pandeysatyam.com/assets/images/og-cover.png",
+            "caption": "Satyam Pandey",
+            "representativeOfPage": true
+          },
+          "description": "Satyam Pandey is a Quantitative Analyst and Data Scientist specializing in quantitative finance, data engineering, and machine learning. He builds analytics platforms, financial tools, and data-driven products.",
+          "jobTitle": [
+            "Quantitative Analyst",
+            "Data Scientist",
+            "Software Developer",
+            "Quantitative Researcher",
+            "Data Engineer"
+          ],
+          "affiliation": [
+            {
+              "@type": "Organization",
+              "name": "Exelon"
+            },
+            {
+              "@type": "Organization",
+              "name": "Independent / Consulting"
+            }
+          ],
+          "alumniOf": [
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "New Jersey Institute of Technology"
+            },
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "Shri Ramdeobaba College of Engineering and Management (RCOEM)"
+            }
+          ],
+          "knowsAbout": [
+            "Quantitative Finance",
+            "Quantitative Research",
+            "Algorithmic Trading",
+            "Financial Analytics",
+            "Time Series Analysis",
+            "Statistics",
+            "Machine Learning",
+            "Data Science",
+            "Data Engineering",
+            "ETL Pipelines",
+            "Cloud Computing",
+            "Python",
+            "SQL",
+            "Business Intelligence",
+            "Data Visualization",
+            "Predictive Modeling"
+          ],
+          "knowsLanguage": [
+            "English",
+            "Hindi",
+            "Marathi"
+          ],
+          "sameAs": [
+            "https://www.linkedin.com/in/pandeysatyam/",
+            "https://github.com/satyamamarpandey",
+            "https://x.com/7satyampandey",
+            "https://dev.to/pandeysatyam",
+            "https://www.instagram.com/_beast_/"
+          ],
+          "hasPart": [
+            {
+              "@type": "WebSite",
+              "@id": "https://knowledgehome.org/#website",
+              "name": "KnowledgeHome",
+              "url": "https://knowledgehome.org/",
+              "description": "Education support, mentorship, and digital access initiatives.",
+              "creator": { "@id": "https://pandeysatyam.com/#person" }
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://h1bwagepage.com/#website",
+              "name": "H1B Wage Page",
+              "url": "https://h1bwagepage.com/",
+              "description": "Data-driven tool to estimate H-1B wage levels by role and location.",
+              "creator": { "@id": "https://pandeysatyam.com/#person" }
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://brandsap.com/#website",
+              "name": "Brandsap",
+              "url": "https://brandsap.com/",
+              "description": "Digital branding and web platform for startups and businesses.",
+              "creator": { "@id": "https://pandeysatyam.com/#person" }
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://gyanvidyamandir.edu.in/#website",
+              "name": "Gyan Vidya Mandir",
+              "url": "https://gyanvidyamandir.edu.in/",
+              "description": "School website and academic information hub.",
+              "creator": { "@id": "https://pandeysatyam.com/#person" }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
 </head>
 
 
@@ -123,14 +232,18 @@
 
         <div class="info-content reveal-on-scroll">
           <h1 class="name" title="Satyam Pandey">Satyam Pandey</h1>
-
-          <p
-            class="title"
-            id="role-title"
+        
+          <p class="seo-only">
+            Satyam Pandey is a Quantitative Analyst and Data Scientist specializing in machine learning,
+            statistical modeling, and data-driven decision making.
+          </p>
+        
+          <p class="title" id="role-title"
             data-roles='["Senior Quantitative Analyst","Data Scientist","ML Engineer","Software Developer","Software Architect"]'>
             Senior Quantitative Analyst
           </p>
         </div>
+        
 
         <button class="info_more-btn" data-sidebar-btn>
           <span>Show Contacts</span>
